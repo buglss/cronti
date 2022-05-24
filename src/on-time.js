@@ -8,7 +8,7 @@
 
 const dateOfMonth = require("../lib/date-of-month")
 const weekOfMonth = require("../lib/week-of-month")
-const secondsDiffFromToday = require("../lib/seconds-diff-from-today")
+const diffSecondsUptoToday = require("../lib/diff-seconds-upto-today")
 const weekOfDate = require("../lib/week-of-date")
 
 module.exports = function({ month = null, week = null, day = null, time = "12:30", tick = 0 }) {
@@ -37,7 +37,7 @@ module.exports = function({ month = null, week = null, day = null, time = "12:30
             if(day !== null) {
                 day = +day
                 let date = dateOfMonth({ month, week, day, time, year: thisYear })
-                let diff = secondsDiffFromToday(date)
+                let diff = diffSecondsUptoToday(date)
                 if(diff < 0) thisYear++
             } else if((wid.index > week) && (week !== -1)) thisYear++
         }

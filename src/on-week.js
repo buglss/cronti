@@ -3,7 +3,7 @@
  * @param {number} tick
  */
 
-const secondsDiffFromToday = require("../lib/seconds-diff-from-today")
+const diffSecondsUptoToday = require("../lib/diff-seconds-upto-today")
 const weekOfDate = require("../lib/week-of-date")
 
 module.exports = function(date, tick = 0) {
@@ -17,7 +17,7 @@ module.exports = function(date, tick = 0) {
     let diff, year = date.getFullYear()
 
     if(year === thisYear) {
-        diff = secondsDiffFromToday(date)
+        diff = diffSecondsUptoToday(date)
         if(diff < 0) date.setFullYear(thisYear + 1)
     } else date.setFullYear(thisYear + 1)
 
