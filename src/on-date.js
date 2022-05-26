@@ -1,15 +1,27 @@
 /**
- * @param {Date} date
- * @param {string} time
+ * Returns the crontime equivalent of the entered date value, repeated every month and every year.
+ * 
+ * @param {Date} date Used date for crontime
+ * 
+ * @returns {String} Crontime
+ * 
+ * @summary Generate crontime of the spesific date
+ * 
+ * @example
+ * // Returns "30 12 26 * *"
+ * onDate("2022-05-26T09:30:00.000Z")
  */
 
-module.exports = function(date, time = "12:30") {
+module.exports = function(date) {
     if(!date) return
 
-    const isRightTime = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/.test(time)
-    if(!isRightTime) return
+    date = new Date(date)
 
-    let [hours, minutes] = time.split(":")
+    if(isNaN(date)) return
 
-    return minutes + " " + hours + " " + date + " * *"
+    let days = date.getDate()
+    let hours = date.getHours()
+    let minutes = date.getMinutes()
+
+    return minutes + " " + hours + " " + days + " * *"
 }

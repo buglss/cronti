@@ -1,8 +1,22 @@
+const isValidCronExpression = require("../lib/is-valid-cron-expression")
+
 /**
- * @param {string} crontime
+ * Returns the crontime of the valid crontime expression.
+ * Returns undefined if invalid crontime expression.
+ * 
+ * @param {String} crontime Crontime
+ * 
+ * @returns {String} Crontime
+ * 
+ * @summary Enter valid crontime expression get crontime expression.
+ * 
+ * @example
+ * // returns 0 2 * * *
+ * onCrontime("0 2 * * *")
  */
 
 module.exports = function(crontime) {
-    // TODO: Add validation
+    if(!isValidCronExpression(crontime)) return
+
     return crontime
 }
