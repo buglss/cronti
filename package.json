@@ -1,6 +1,6 @@
 {
 	"name": "cronti",
-	"version": "0.1.4",
+	"version": "0.1.5",
 	"description": "Generate cron times",
 	"main": "index.js",
 	"scripts": {
