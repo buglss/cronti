@@ -6,18 +6,18 @@ const weekOfDate = require("../lib/week-of-date")
  * The crontime expression that will be triggered before the entered date based on the tick value is returned.
  * 
  * @param {Date} date Date of the week for crontime
- * @param {Number=} [tick=0] The number of days to subtract from the date. Month and week required parameters for tick.
+ * @param {Number=} [tick=0] The number of days to subtract from the date.
  * 
  * @returns {String} Crontime
  * 
  * @summary Generates the cron time for the week the date is in.
  * 
  * @example
- * // returns 30 12 22-28 5-5 *
+ * // returns "30 12 22-28 5-5 *"
  * onWeek("2022-05-26T09:30:00.000Z")
  * 
  * @example
- * // returns 30 12 20-28 5-5 *
+ * // returns "30 12 20-28 5-5 *"
  * onWeek("2022-05-26T09:30:00.000Z", 2)
  * 
  * @license GPL-3.0

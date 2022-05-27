@@ -11,7 +11,7 @@ const isValidCronExpression = require("../lib/is-valid-cron-expression")
  * @summary Enter valid crontime expression get crontime expression.
  * 
  * @example
- * // returns 0 2 * * *
+ * // returns "0 2 * * *"
  * onCrontime("0 2 * * *")
  * 
  * @license GPL-3.0

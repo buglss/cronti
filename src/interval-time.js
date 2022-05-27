@@ -1,10 +1,11 @@
 /**
  * Creates crontime based on start and end date. 
  * According to step parameter, it is specified in which intervals it will work between two dates.
+ * The step parameter is used in days, hours or minutes.
  * 
  * @param {Date} startDate Cron start date
  * @param {Date} endDate Cron end date
- * @param {"<Number>d"|"<Number>h"|"<Number>m"} step Specifies at what intervals to run.
+ * @param {"<Number>d"|"<Number>h"|"<Number>m"} step Specifies at what steps to run.
  * 
  * @returns {String} crontime
  * 

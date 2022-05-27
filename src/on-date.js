@@ -5,7 +5,7 @@
  * 
  * @returns {String} Crontime
  * 
- * @summary Generate crontime of the spesific date
+ * @summary Generate crontime of the spesific date.
  * 
  * @example
  * // Returns "30 12 26 * *"

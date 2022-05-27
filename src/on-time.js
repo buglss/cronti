@@ -28,47 +28,47 @@ const weekOfDate = require("../lib/week-of-date")
  * 
  * @example
  * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
- * // returns 30 12 15-21 5 *
+ * // returns "30 12 15-21 5 *"
  * onTime({month: 4, week: 2})
  * 
  * @example
  * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
- * // returns 30 12 18 5 *
+ * // returns "30 12 18 5 *"
  * onTime({month: 4, week: 2, weekDays: 3})
  * 
  * @example
  * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
- * // returns 30 12 1-7 * *
+ * // returns "30 12 1-7 * *"
  * onTime({week: 0})
  * 
  * @example
  * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
- * // returns 30 12 * 3 *
+ * // returns "30 12 * 3 *"
  * onTime({month: 2})
  * 
  * @example
  * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
- * // returns 30 12 * * 6
+ * // returns "30 12 * * 6"
  * onTime({weekDays: 6})
  * 
  * @example
  * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
- * // returns 30 12 * 4 1
+ * // returns "30 12 * 4 1"
  * onTime({month: 3, weekDays: 1})
  * 
  * @example
  * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
- * // returns 30 12 * * *
+ * // returns "30 12 * * *"
  * onTime({})
  * 
  * @example
  * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
- * // returns 30 12 14-21 5 *
+ * // returns "30 12 14-21 5 *"
  * onTime({month: 4, week: 2, tick: 1})
  * 
  * @example
  * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
- * // returns 45 09 * 3 *
+ * // returns "45 09 * 3 *"
  * onTime({month: 2, time: "09:45"})
  * 
  * @license GPL-3.0
