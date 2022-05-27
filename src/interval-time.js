@@ -25,6 +25,8 @@
  * @example
  * // returns "*<spaceless>/30 12 1-2 4-4 *" // Added <spaceless> because broke comment line
  * intervalTime("2022-04-01T09:30:00.000Z", "2022-04-02T09:30:00.000Z", "30m")
+ * 
+ * @license GPL-3.0
  */
 
 module.exports = function(startDate, endDate, step) {

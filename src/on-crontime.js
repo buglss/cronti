@@ -13,6 +13,8 @@ const isValidCronExpression = require("../lib/is-valid-cron-expression")
  * @example
  * // returns 0 2 * * *
  * onCrontime("0 2 * * *")
+ * 
+ * @license GPL-3.0
  */
 
 module.exports = function(crontime) {

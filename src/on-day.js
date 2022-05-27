@@ -16,6 +16,8 @@
  * @example
  * // returns "30 12 24 5 *"
  * onDay("2022-05-26T09:30:00.000Z", 2)
+ * 
+ * @license GPL-3.0
  */
 
 module.exports = function(date, tick = 0) {

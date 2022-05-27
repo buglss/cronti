@@ -70,6 +70,8 @@ const weekOfDate = require("../lib/week-of-date")
  * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
  * // returns 45 09 * 3 *
  * onTime({month: 2, time: "09:45"})
+ * 
+ * @license GPL-3.0
  */
 
 module.exports = function({ month, week, weekDays, time = "12:30", tick = 0 }) {
@@ -79,7 +81,7 @@ module.exports = function({ month, week, weekDays, time = "12:30", tick = 0 }) {
     const isValidWeek = !week || [0, 1, 2, -1].includes(+week)
 
     const isValidTime = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/.test(time)
-    const isValidDay = !weekDays || [0, 1, 2, 3, 4, 5, 6].includes(weekDays)
+    const isValidDay = !weekDays || [0, 1, 2, 3, 4, 5, 6].includes(+weekDays)
     if(!isValidMonth || !isValidWeek || !isValidDay || !isValidTime || isNaN(+tick)) return
 
     let now = new Date()
@@ -121,15 +123,16 @@ module.exports = function({ month, week, weekDays, time = "12:30", tick = 0 }) {
             week = weekOfMonth({ month, week, year: thisYear })
             let firstDate = week[0]
             let lastDate = week[week.length - 1]
+            let firstMonth = month
 
             if(tick) {
                 let startDate = new Date(thisYear, month, firstDate)
                 startDate.setDate(startDate.getDate() - tick)
                 firstDate = startDate.getDate()
-                month = startDate.getMonth() + 1
-            } else month += 1
+                firstMonth = startDate.getMonth()
+            }
 
-            return minutes + " " + hours + " " + firstDate + "-" + lastDate + " " + month + " *"
+            return `${minutes} ${hours} ${firstDate}-${lastDate} ${++firstMonth}-${++month} *`
         }
     }
     else if((!month && month !== 0) && (week || week === 0) && (!weekDays && weekDays !== 0)) {

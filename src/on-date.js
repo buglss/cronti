@@ -10,6 +10,8 @@
  * @example
  * // Returns "30 12 26 * *"
  * onDate("2022-05-26T09:30:00.000Z")
+ * 
+ * @license GPL-3.0
  */
 
 module.exports = function(date) {

@@ -1,47 +1,65 @@
-/**
- * @param {Date} date
- * @param {number} tick
- */
-
 const diffSecondsUptoToday = require("../lib/diff-seconds-upto-today")
 const weekOfDate = require("../lib/week-of-date")
+
+/**
+ * The crontime expression that will be triggered every day of the week that the entered date is in returns.
+ * The crontime expression that will be triggered before the entered date based on the tick value is returned.
+ * 
+ * @param {Date} date Date of the week for crontime
+ * @param {Number=} [tick=0] The number of days to subtract from the date. Month and week required parameters for tick.
+ * 
+ * @returns {String} Crontime
+ * 
+ * @summary Generates the cron time for the week the date is in.
+ * 
+ * @example
+ * // returns 30 12 22-28 5-5 *
+ * onWeek("2022-05-26T09:30:00.000Z")
+ * 
+ * @example
+ * // returns 30 12 20-28 5-5 *
+ * onWeek("2022-05-26T09:30:00.000Z", 2)
+ * 
+ * @license GPL-3.0
+ */
 
 module.exports = function(date, tick = 0) {
     if(!date) return
 
-    date = new Date(payload.date)
+    date = new Date(date)
 
-    if(isNaN(date)) return
+    if(isNaN(date) || isNaN(+tick)) return
 
     let thisYear = new Date().getFullYear()
-    let diff, year = date.getFullYear()
+    let diff = 0
+    let year = date.getFullYear()
 
     if(year === thisYear) {
         diff = diffSecondsUptoToday(date)
         if(diff < 0) date.setFullYear(thisYear + 1)
-    } else date.setFullYear(thisYear + 1)
+    }
+    else date.setFullYear(thisYear + 1)
 
-    let wid = weekOfDate(date).week
+    let wod = weekOfDate(date)
 
-    if(!wid) return
+    if(!wod) return
 
-    let week = wid.week
+    let week = wod.week
     let month = date.getMonth()
     let hours = date.getHours()
     let minutes = date.getMinutes()
     let firstDay = week[0]
     let lastDay = week[week.length - 1]
+    let firstMonth = month
 
     if(tick) {
-        let thisMonth = Number(month),
-            startDate = new Date(thisYear + "/" + (thisMonth + 1) + "/" + firstDay)
+        let startDate = new Date(thisYear, month, firstDay)
 
         startDate.setDate(startDate.getDate() - Number(tick))
 
         firstDay = startDate.getDate()
-        lastDay = firstDay
-        month = startDate.getMonth()
+        firstMonth = startDate.getMonth()
     }
 
-    return minutes + " " + hours + " " + firstDay + "-" + lastDay + " " + month + " *"
+    return `${minutes} ${hours} ${firstDay}-${lastDay} ${++firstMonth}-${++month} *`
 }
