@@ -1,5 +1,5 @@
-[![en-EN](https://img.shields.io/badge/*EN-English-blue?style=plastic)](README)
-[![tr-TR](https://img.shields.io/badge/TR-Turkish-red?link=README.tr-TR.md)](README.tr-TR)
+[![en-EN](https://img.shields.io/badge/*EN-English-blue?style=plastic)](README.md)
+[![tr-TR](https://img.shields.io/badge/TR-Turkish-red?link=README.tr-TR.md)](README.tr-TR.md)
 
 ![nodejs](https://img.shields.io/badge/nodejs-43853d?logo=nodedotjs&labelColor=fff&style=plastic)
 ![npm](https://img.shields.io/badge/npm-bc2c32?logo=npm&labelColor=fff)
