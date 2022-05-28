@@ -1,8 +1,18 @@
+![en-EN](https://img.shields.io/badge/*EN-English-blue?link=README.md&style=plastic)
+![tr-TR](https://img.shields.io/badge/TR-Turkish-red?link=README.tr-TR.md)
+
+![nodejs](https://img.shields.io/badge/nodejs-43853d?logo=nodedotjs&labelColor=fff&style=plastic)
+![npm](https://img.shields.io/badge/npm-bc2c32?logo=npm&labelColor=fff)
+![javascript](https://img.shields.io/badge/javascript-e9d961?logo=javascript&labelColor=000)
+![mocha](https://img.shields.io/badge/mocha-8d6849?logo=mocha&labelColor=fff&style=plastic)
+
 # Introduction
 
-You need to know crontime statements to do scheduled jobs. But this package saves you the trouble. You can generate crontime expressions with the timing expressions used in daily life. You can use this crontime expression you produce to create a scheduled job. A valid crontime expression is returned.
+You need to know crontime expression to do scheduled jobs. However, this package saves you this trouble. You can create crontime expressions with timing expressions used in daily life. You can use this generated crontime expression to create a scheduled job. A valid crontime expression is returned.
 
-Scheduled jobs can be used in conjunction with the technologies you will install. You can easily present an interface while creating scheduled work in your projects. It offers functions where people can plan in the language they use in daily life.
+You can use it with any cronjob package or directly with the crontab command sets provided by the operating systems. It can work with even the most primitive instruction sets. Because this package directly returns the crontime expression.
+
+You can easily present an interface when creating scheduled and calendar works in your projects. It offers functions where people can make plans in the language they use in daily life.
 
 ![Crontime_Trouble](./assets/crontime_trouble.png)
 
@@ -17,7 +27,7 @@ npm i -g cronti # Global Install. For use in general projects.
 
 Note: add `--save` if you are using npm < 5.0.0
 
-# Quick Usage
+# Quick Start
 
 In NodeJs:
 
@@ -25,7 +35,7 @@ In NodeJs:
 // Include Package
 const cronti = require("cronti")
 
-/* Creates a crontime that will run at regular intervals between two dates. */
+/* Creates a crontime expression that will run at regular intervals between two dates. */
 cronti.intervalTime("2022-04-25T09:30:00.000Z", "2022-05-15T09:30:00.000Z")
 /* - OR - */
 cronti.intervalTime(new Date("2022-04-25 12:30"), new Date("2022-05-15 12:30"))
@@ -37,26 +47,22 @@ cronti.onCrontime("0 2 * * *")
 /* returns "0 2 * * *" */
 /* ************************************************************************ */
 
-/* Generate crontime of the spesific date. */
+/* Generate crontime expression of the spesific date. */
 cronti.onDate("2022-05-26T09:30:00.000Z")
 /* - OR - */
 cronti.onDate(new Date("2022-05-26 12:30"))
 /* returns "30 12 26 * *" */
 /* ************************************************************************ */
 
-
-/* Generate crontime of the spesific day of date. */
+/* Generate crontime expression of the spesific day of date. */
 cronti.onDay("2022-05-26T09:30:00.000Z")
 /* - OR - */
 cronti.onDay(new Date("2022-05-26 12:30"))
 /* returns "30 12 26 5 *" */
 /* ************************************************************************ */
 
-
-/* Create crontime with various combinations of month, week, weekdays, hours, minutes and tick. 
-
+/* Create crontime with various combinations of month, week, weekdays, time and tick parameters.  
  * Attention! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
-
 */
 cronti.onTime({month: 4, week: 2})
 /* returns "30 12 15-21 5 *" */
@@ -69,9 +75,7 @@ cronti.onTime({month: 3, weekDays: 1})
 /* ************************************************************************ */
 
 /* Generates the cron time for the week the date is in.
-
  * Attention! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
-
 */
 cronti.onWeek("2022-05-26T09:30:00.000Z")
 /* - OR - */
@@ -110,7 +114,7 @@ cronti.onWeek(new Date("2022-05-26 12:30"))
   
 ## intervalTime
 
-Creates crontime based on start and end date. According to step parameter, it is specified in which intervals it will work between two dates. The step parameter is used in days, hours or minutes.
+Creates crontime expression based on start and end date. According to step parameter, it is specified in which intervals it will work between two dates. The step parameter is used in days, hours or minutes.
 
 #### Input
 
@@ -122,9 +126,9 @@ Creates crontime based on start and end date. According to step parameter, it is
 
 #### Output
 
-| Type              | Description    |
-|:-----------------:|:--------------:|
-| String            | Crontime       |
+| Type              | Description          |
+|:-----------------:|:--------------------:|
+| String            | Crontime expression  |
 
 #### Example
 
@@ -146,19 +150,19 @@ cronti.intervalTime("2022-04-01T09:30:00.000Z", "2022-04-02T09:30:00.000Z", "30m
 
 ## onCrontime
 
-Returns the crontime of the valid crontime expression. Returns undefined if invalid crontime expression.
+Returns the crontime expression of the valid crontime expression. Returns undefined if invalid crontime expression.
 
 #### Input
 
 | Parameter     | Type                  | Required | Description              |
 |:-------------:|:---------------------:|:--------:|:------------------------:|
-| crontime      | String                | true     | Crontime                 |
+| crontime      | String                | true     | Crontime expression      |
 
 #### Output
 
-| Type              | Description    |
-|:-----------------:|:--------------:|
-| String            | Crontime       |
+| Type              | Description          |
+|:-----------------:|:--------------------:|
+| String            | Crontime expression  |
 
 #### Example
 
@@ -171,19 +175,19 @@ cronti.onCrontime("0 2 * * *")
 
 ## onDate
 
-Returns the crontime equivalent of the entered date value, repeated every month and every year.
+Returns the crontime expression of the entered date value, repeated every month and every year by this expression.
 
 #### Input
 
-| Parameter     | Type                  | Required | Description                 |
-|:-------------:|:---------------------:|:--------:|:---------------------------:|
-| date          | Date                  | true     | Used date for crontime      |
+| Parameter     | Type                  | Required | Description                        |
+|:-------------:|:---------------------:|:--------:|:----------------------------------:|
+| date          | Date                  | true     | Used date for crontime expression  |
 
 #### Output
 
-| Type              | Description    |
-|:-----------------:|:--------------:|
-| String            | Crontime       |
+| Type              | Description              |
+|:-----------------:|:------------------------:|
+| String            | Crontime expression      |
 
 #### Example
 
@@ -196,21 +200,21 @@ cronti.onDate("2022-05-26T09:30:00.000Z")
 
 ## onDay
 
-Returns the crontime equivalent of the entered date value, repeating every year.
+Returns the crontime expression of the entered date value, repeated every year by this expression.
 The crontime expression that will be triggered before the entered date according to the tick value is returned.
 
 #### Input
 
 | Parameter     | Type                  | Required | Description                                      |
 |:-------------:|:---------------------:|:--------:|:------------------------------------------------:|
-| date          | Date                  | true     | Used date for crontime                           |
-| tick          | Number                | false    | The number of days to subtract from the date.    |
+| date          | Date                  | true     | Used date for crontime expression                |
+| tick          | Number                | false    | The number of days to subtract from the date     |
 
 #### Output
 
-| Type              | Description    |
-|:-----------------:|:--------------:|
-| String            | Crontime       |
+| Type              | Description           |
+|:-----------------:|:---------------------:|
+| String            | Crontime expression   |
 
 #### Example
 
@@ -226,14 +230,14 @@ cronti.onDay("2022-05-26T09:30:00.000Z", 2)
 
 ## onTime
 
-Create crontime with various combinations of month, week, weekdays, hours, minutes and tick. Only time is a mandatory parameter. All crontime expressions are set according to this time parameter.
+Create crontime with various combinations of month, week, weekdays, time and tick parameters. Only time is a mandatory value. All crontime expressions are set according to this time parameter.
 The crontime expression that will be triggered before the entered date according to the tick value is returned.
 
 - If only the month(0..11) and week(0,1,2,-1) parameter is filled, the crontime expression that will be triggered every day from the first day of the week to the last day of that week is returned.
-- If only the month(0..11), week(0,1,2,-1) and weekdays(0..6) parameters are populated, the crontime expression for that day is returned.
-- If only the week(0,1,2,-1) parameter is populated, the crontime expression that will be triggered every day during that week is returned. Except last week(-1).
+- If only the month(0..11), week(0,1,2,-1) and weekdays(0..6) parameters are populated, the crontime expression for that weekday is returned.
+- If only the week(0,1,2,-1) parameter is populated, the crontime expression that will be triggered every day during that week is returned. Except for the last week of the month(-1).
 - If only the month(0..11) parameter is populated, the crontime expression is returned for each day in that month.
-- If only the weekdays(0..6) parameter is populated, the crontime expression is returned for this weekdays every month.
+- If only the weekdays(0..6) parameter is populated, the crontime expression is returned for this weekday every month.
 - If only the month(0..11) and weekdays(0..6) parameters are populated, the crontime expression is returned for these weekdays of this month.
 - If no parameters are filled in, the crontime expression is returned for each day of each month.
 
@@ -243,16 +247,16 @@ The crontime expression that will be triggered before the entered date according
 |:-----------------------------:|:-----------------:|:--------:|:-------------------------------------------------------------------------------------------:|
 | options (destructuring param) | Object            | true     | Options                                                                                     |
 | options.month                 | Number            | false    | Month(0..11) for crontime expression                                                        |
-| options.week                  | Number            | false    | Week(0,1,2,-1) for crontime expression.                                                     |
+| options.week                  | Number            | false    | Week(0,1,2,-1) for crontime expression                                                      |
 | options.weekDays              | Number            | false    | Weekdays(0..6) for crontime expression                                                      |
-| options.time                  | String <dd\:mm>   | true     | Time(dd:mm) for crontime expression                                                         |
-| options.tick                  | Number            | false    | The number of days to subtract from the date. Month and week required parameters for tick.  |
+| options.time                  | String <dd\:mm>   | false    | Time(dd:mm) for crontime expression                                                         |
+| options.tick                  | Number            | false    | The number of days to subtract from the date. Month and week required parameters for tick   |
 
 #### Output
 
-| Type              | Description    |
-|:-----------------:|:--------------:|
-| String            | Crontime       |
+| Type              | Description            |
+|:-----------------:|:----------------------:|
+| String            | Crontime expression    |
 
 #### Example
 
@@ -305,14 +309,14 @@ The crontime expression that will be triggered before the entered date based on 
 
 | Parameter     | Type                  | Required | Description                                      |
 |:-------------:|:---------------------:|:--------:|:------------------------------------------------:|
-| date          | Date                  | true     | Date of the week for crontime                    |
-| tick          | Number                | false    | The number of days to subtract from the date.    |
+| date          | Date                  | true     | Date of the week for crontime expression         |
+| tick          | Number                | false    | The number of days to subtract from the date     |
 
 #### Output
 
-| Type              | Description    |
-|:-----------------:|:--------------:|
-| String            | Crontime       |
+| Type              | Description            |
+|:-----------------:|:----------------------:|
+| String            | Crontime expression    |
 
 #### Example
 
@@ -330,8 +334,8 @@ cronti.onWeek("2022-05-26T09:30:00.000Z", 2)
 
 It is maintained by:
 
-- Levent Sencer Şahin _ [LinkedIn:@buglss](https://www.linkedin.com/in/buglss/) | [Blog:@buglss](https://buglss.github.io/) | [Facebook:@buglss](https://www.facebook.com/buglss) | [Twitter:@buglss](https://twitter.com/buglss) | [Instagram:@buglss](https://www.instagram.com/buglss)
+- Levent Sencer Şahin : [LinkedIn:@buglss](https://www.linkedin.com/in/buglss/) | [Blog:@buglss](https://buglss.github.io/) | [Facebook:@buglss](https://www.facebook.com/buglss) | [Twitter:@buglss](https://twitter.com/buglss) | [Instagram:@buglss](https://www.instagram.com/buglss)
 
 # Copyright And License
 
-Copyright Levent Sencer Şahin and other contributors, under [GPL-3.0](LICENSE).
+Copyright Levent Sencer Şahin and other contributors, under [the GPL-3.0](LICENSE).
