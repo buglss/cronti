@@ -35,7 +35,7 @@ Note: add `--save` if you are using npm < 5.0.0
 
 In Demo:
 
-[Demo project download (rar)](demo/publish/demo.rar). Extract the project files from rar. Go to project directory. Execute ``index.js`` file by **nodejs**.
+[Demo project download (rar)](raw/master/demo/publish/demo.rar). Extract the project files from rar. Go to project directory. Execute ``index.js`` file by **nodejs**.
 
 ```bash
 unrar e demo.rar
