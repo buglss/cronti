@@ -35,7 +35,7 @@ Not: Eğer npm versiyonunuz 5.0.0'dan küçükse `--save` argumanı ekleyin.
 
 Demo'da:
 
-[Demo projesini indir (rar)](raw/master/demo/publish/demo.rar). Proje dosyalarını rar'dan çıkar. Proje dizinine git. Nodejs ile ``index.js`` dosyasını çalıştır.
+[Demo projesini indir (rar)](demo/publish/demo.rar?raw=true). Proje dosyalarını rar'dan çıkar. Proje dizinine git. Nodejs ile ``index.js`` dosyasını çalıştır.
 
 ```bash
 unrar e demo.rar
