@@ -4,7 +4,8 @@
   "description": "Demo for cronti package.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "demo": "node index.js"
   },
   "author": "Levent Sencer Şahin | @buglss",
   "license": "GPL-3.0",

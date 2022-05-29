@@ -39,8 +39,8 @@ Demo'da:
 
 ```bash
 unrar e demo.rar
-cd demo
-node index.js
+npm i
+npm run demo
 ```
 
 NodeJs'de:

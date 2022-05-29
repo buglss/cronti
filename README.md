@@ -40,7 +40,8 @@ In Demo:
 ```bash
 unrar e demo.rar
 cd demo
-node index.js
+npm i
+npm run demo
 ```
 
 In NodeJs:
