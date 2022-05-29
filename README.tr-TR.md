@@ -39,6 +39,7 @@ Demo'da:
 
 ```bash
 unrar e demo.rar
+cd demo
 npm i
 npm run demo
 ```
