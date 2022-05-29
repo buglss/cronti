@@ -5,6 +5,10 @@
 ![npm](https://img.shields.io/badge/npm-bc2c32?logo=npm&labelColor=fff)
 ![javascript](https://img.shields.io/badge/javascript-e9d961?logo=javascript&labelColor=000)
 ![mocha](https://img.shields.io/badge/mocha-8d6849?logo=mocha&labelColor=fff)
+[![License](https://img.shields.io/badge/License-GPL--3.0-red)](LICENSE)
+[![vulnerabilities](https://snyk.io/test/github/buglss/cronti/badge.svg)](https://snyk.io/test/github/buglss/cronti/)
+
+[![NPM](https://nodei.co/npm/cronti.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/cronti/)
 
 # Giriş
 
@@ -54,14 +58,12 @@ cronti.onDate(new Date("2022-05-26 12:30"))
 /* çıktısı "30 12 26 * *" */
 /* ************************************************************************ */
 
-
 /* Belirli bir tarihteki güne ait crontime ifadesi oluşturun. */
 cronti.onDay("2022-05-26T09:30:00.000Z")
 /* - VEYA - */
 cronti.onDay(new Date("2022-05-26 12:30"))
 /* çıktısı "30 12 26 5 *" */
 /* ************************************************************************ */
-
 
 /* month, week, weekDays, time ve tick parametrelerinin çeşitli kombinasyonlarla crontime ifadesi oluşturun. 
  * Dikkat! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.

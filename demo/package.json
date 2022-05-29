@@ -1,0 +1,14 @@
+{
+  "name": "cronti-demo",
+  "version": "1.0.0",
+  "description": "Demo for cronti package.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Levent Sencer Şahin | @buglss",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "cronti": "^1.0.4"
+  }
+}
