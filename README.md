@@ -35,10 +35,10 @@ Note: add `--save` if you are using npm < 5.0.0
 
 In Demo:
 
-[Demo project download (rar)](demo/publish/demo.rar?raw=true). Extract the project files from rar. Go to project directory. Execute ``index.js`` file by **nodejs**.
+[Demo project download (zip)](demo/publish/demo.zip?raw=true). Extract the project files from zip. Go to project directory. Execute ``index.js`` file by **nodejs**.
 
 ```bash
-unrar e demo.rar
+unzip demo.zip
 cd demo
 npm i
 npm run demo
@@ -51,50 +51,74 @@ In NodeJs:
 const cronti = require("cronti")
 
 /* Creates a crontime expression that will run at regular intervals between two dates. */
-cronti.intervalTime("2022-04-25T09:30:00.000Z", "2022-05-15T09:30:00.000Z")
+cronti("onIntervalTime", "2022-04-25T09:30:00.000Z", "2022-05-15T09:30:00.000Z")
 /* - OR - */
-cronti.intervalTime(new Date("2022-04-25 12:30"), new Date("2022-05-15 12:30"))
+cronti("onIntervalTime", new Date("2022-04-25 12:30"), new Date("2022-05-15 12:30"))
+/* - OR - */
+cronti(2, "2022-04-25T09:30:00.000Z", "2022-05-15T09:30:00.000Z")
+/* - OR - */
+cronti(2, new Date("2022-04-25 12:30"), new Date("2022-05-15 12:30"))
 /* returns "30 12 25-15 4-5 *" */
 /* ************************************************************************ */
 
 /* Enter valid crontime expression get crontime expression. */
-cronti.onCrontime("0 2 * * *")
+cronti("onCrontime", "0 2 * * *")
+/* - OR - */
+cronti(4, "0 2 * * *")
 /* returns "0 2 * * *" */
 /* ************************************************************************ */
 
 /* Generate crontime expression of the spesific date. */
-cronti.onDate("2022-05-26T09:30:00.000Z")
+cronti("onDate", "2022-05-26T09:30:00.000Z")
 /* - OR - */
-cronti.onDate(new Date("2022-05-26 12:30"))
+cronti("onDate", new Date("2022-05-26 12:30"))
+/* - OR - */
+cronti(5, "2022-05-26T09:30:00.000Z")
+/* - OR - */
+cronti(5, new Date("2022-05-26 12:30"))
 /* returns "30 12 26 * *" */
 /* ************************************************************************ */
 
 /* Generate crontime expression of the spesific day of date. */
-cronti.onDay("2022-05-26T09:30:00.000Z")
+cronti("onDay", "2022-05-26T09:30:00.000Z")
 /* - OR - */
-cronti.onDay(new Date("2022-05-26 12:30"))
+cronti("onDay", new Date("2022-05-26 12:30"))
+/* - OR - */
+cronti(0, "2022-05-26T09:30:00.000Z")
+/* - OR - */
+cronti(0, new Date("2022-05-26 12:30"))
 /* returns "30 12 26 5 *" */
 /* ************************************************************************ */
 
 /* Create crontime with various combinations of month, week, weekdays, time and tick parameters.  
  * Attention! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
 */
-cronti.onTime({month: 4, week: 2})
+cronti("onTime", "4M", "2W")
+/* - OR - */
+cronti(3, "4M", "2W")
 /* returns "30 12 15-21 5 *" */
 /* ---------------------------------------------------- */
-cronti.onTime({month: 4, week: 2, weekDays: 3})
+cronti("onTime", "4M", "2W", "3WD")
+/* - OR - */
+cronti(3, "4M", "2W", "3WD")
 /* returns "30 12 18 5 *" */
 /* ---------------------------------------------------- */
-cronti.onTime({month: 3, weekDays: 1})
+cronti("onTime", "3M", "1WD")
+/* - OR - */
+cronti(3, "3M", "1WD")
 /* returns "30 12 * 4 1" */
 /* ************************************************************************ */
 
 /* Generates the cron time for the week the date is in.
  * Attention! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
 */
-cronti.onWeek("2022-05-26T09:30:00.000Z")
+cronti("onWeek", "2022-05-26T09:30:00.000Z")
 /* - OR - */
-cronti.onWeek(new Date("2022-05-26 12:30"))
+cronti("onWeek", new Date("2022-05-26 12:30"))
+/* - OR - */
+cronti(1, "2022-05-26T09:30:00.000Z")
+/* - OR - */
+cronti(1, new Date("2022-05-26 12:30"))
 /* returns "30 12 22-28 5-5 *" */
 /* ************************************************************************ */
 ```
@@ -102,7 +126,7 @@ cronti.onWeek(new Date("2022-05-26 12:30"))
 # Documentation
 
 - [Documentation](#documentation)
-  - [intervalTime](#intervaltime)
+  - [onIntervalTime](#onintervaltime)
     - [Input](#input)
     - [Output](#output)
     - [Example](#example)
@@ -126,18 +150,33 @@ cronti.onWeek(new Date("2022-05-26 12:30"))
     - [Input](#input-5)
     - [Output](#output-5)
     - [Example](#example-5)
-  
-## intervalTime
+
+The ``cronti`` function takes the method name or index value in the first parameter. Then unlimited parameters can be added. Parameters sent according to the function of the called method are used.
+
+cronti(<methodName(string)|methodIndex(number)>, <...args>)
+
+| Methods               | Index   | Name             | Description                                                                                       |
+|:---------------------:|:-------:|:----------------:|:-------------------------------------------------------------------------------------------------:|
+| onDay                 | 0       | onDay            | Generate crontime of the spesific day of date                                                     |
+| onWeek                | 1       | onWeek           | Generates the cron time for the week the date is in                                               |
+| onIntervalTime        | 2       | onIntervalTime   | Creates a crontime that will run at regular intervals between two dates                           |
+| onTime                | 3       | onTime           | Create crontime with various combinations of month, week, weekdays, hours, minutes and tick       |
+| onCrontime            | 4       | onCrontime       | Enter valid crontime expression get crontime expression                                           |
+| onDate                | 5       | onDate           | Generate crontime of the spesific date                                                            |
+
+## onIntervalTime
 
 Creates crontime expression based on start and end date. According to step parameter, it is specified in which intervals it will work between two dates. The step parameter is used in days, hours or minutes.
 
+There should be 2 date values in the parameters. The order of these dates is not important. The smaller startDate will be used as the larger endDate. For the step parameter, you can use a string value suitable for the pattern.
+
 #### Input
 
-| Parameter     | Type                         | Required    | Description                         |
-|:-------------:|:----------------------------:|:-----------:|:-----------------------------------:|
-| startDate     | Date                         | true        | Cron start date                     |
-| endDate       | Date                         | true        | Cron end date                       |
-| step          | String <.d \| .h \| .m>      | false       | Specifies at what steps to run.     |
+| Parameter             | Type                         | Required    | Description                         |
+|:---------------------:|:----------------------------:|:-----------:|:-----------------------------------:|
+| args.\<startDate\>    | Date                         | true        | Cron start date                     |
+| args.\<endDate\>      | Date                         | true        | Cron end date                       |
+| args.\<step>          | String <.d \| .h \| .m>      | false       | Specifies at what steps to run.     |
 
 #### Output
 
@@ -150,16 +189,24 @@ Creates crontime expression based on start and end date. According to step param
 ```js
 const cronti = require("cronti")
 
-cronti.intervalTime("2022-04-25T09:30:00.000Z", "2022-05-15T09:30:00.000Z")
+cronti("onIntervalTime", "2022-04-25T09:30:00.000Z", "2022-05-15T09:30:00.000Z")
+/* - OR - */
+cronti(2, "2022-04-25T09:30:00.000Z", "2022-05-15T09:30:00.000Z")
 // => "30 12 25-15 4-5 *"
 
-cronti.intervalTime("2022-06-10T09:30:00.000Z", "2022-07-20T09:30:00.000Z", "4d")
+cronti("onIntervalTime", "2022-06-10T09:30:00.000Z", "2022-07-20T09:30:00.000Z", "4d")
+/* - OR - */
+cronti(2, "2022-06-10T09:30:00.000Z", "2022-07-20T09:30:00.000Z", "4d")
 // => "30 12 10-20/4 6-7 *"
 
-cronti.intervalTime("2022-04-01T09:30:00.000Z", "2022-07-05T09:30:00.000Z", "2h")
+cronti("onIntervalTime", "2022-04-01T09:30:00.000Z", "2022-07-05T09:30:00.000Z", "2h")
+/* - OR - */
+cronti(2, "2022-04-01T09:30:00.000Z", "2022-07-05T09:30:00.000Z", "2h")
 // => "30 */2 1-5 4-7 *"
 
-cronti.intervalTime("2022-04-01T09:30:00.000Z", "2022-04-02T09:30:00.000Z", "30m")
+cronti("onIntervalTime", "2022-04-01T09:30:00.000Z", "2022-04-02T09:30:00.000Z", "30m")
+/* - OR - */
+cronti(2, "2022-04-01T09:30:00.000Z", "2022-04-02T09:30:00.000Z", "30m")
 // => "*/30 12 1-2 4-4 *"
 ```
 
@@ -167,11 +214,13 @@ cronti.intervalTime("2022-04-01T09:30:00.000Z", "2022-04-02T09:30:00.000Z", "30m
 
 Returns the crontime expression of the valid crontime expression. Returns undefined if invalid crontime expression.
 
+Any crontime expression can be used in the parameters.
+
 #### Input
 
-| Parameter     | Type                  | Required | Description              |
-|:-------------:|:---------------------:|:--------:|:------------------------:|
-| crontime      | String                | true     | Crontime expression      |
+| Parameter            | Type                  | Required | Description              |
+|:--------------------:|:---------------------:|:--------:|:------------------------:|
+| args.\<crontime\>    | String                | true     | Crontime expression      |
 
 #### Output
 
@@ -184,7 +233,9 @@ Returns the crontime expression of the valid crontime expression. Returns undefi
 ```js
 const cronti = require("cronti")
 
-cronti.onCrontime("0 2 * * *")
+cronti("onCrontime", "0 2 * * *")
+/* - OR - */
+cronti(4, "0 2 * * *")
 // => "0 2 * * *"
 ```
 
@@ -192,11 +243,13 @@ cronti.onCrontime("0 2 * * *")
 
 Returns the crontime expression of the entered date value, repeated every month and every year by this expression.
 
+A valid date value must be sent as a parameter.
+
 #### Input
 
 | Parameter     | Type                  | Required | Description                        |
 |:-------------:|:---------------------:|:--------:|:----------------------------------:|
-| date          | Date                  | true     | Used date for crontime expression  |
+| args.\<date\>   | Date                  | true     | Used date for crontime expression  |
 
 #### Output
 
@@ -209,7 +262,9 @@ Returns the crontime expression of the entered date value, repeated every month 
 ```js
 const cronti = require("cronti")
 
-cronti.onDate("2022-05-26T09:30:00.000Z")
+cronti("onDate", "2022-05-26T09:30:00.000Z")
+/* - OR - */
+cronti(5, "2022-05-26T09:30:00.000Z")
 // => "30 12 26 * *"
 ```
 
@@ -218,12 +273,14 @@ cronti.onDate("2022-05-26T09:30:00.000Z")
 Returns the crontime expression of the entered date value, repeated every year by this expression.
 The crontime expression that will be triggered before the entered date according to the tick value is returned.
 
+A valid date value must be sent as a parameter. Any numeric value can be used for the tick value.
+
 #### Input
 
 | Parameter     | Type                  | Required | Description                                      |
 |:-------------:|:---------------------:|:--------:|:------------------------------------------------:|
-| date          | Date                  | true     | Used date for crontime expression                |
-| tick          | Number                | false    | The number of days to subtract from the date     |
+| args.\<date\>   | Date                  | true     | Used date for crontime expression                |
+| args.\<tick\>   | Number                | false    | The number of days to subtract from the date     |
 
 #### Output
 
@@ -236,10 +293,14 @@ The crontime expression that will be triggered before the entered date according
 ```js
 const cronti = require("cronti")
 
-cronti.onDay("2022-05-26T09:30:00.000Z")
+cronti("onDay", "2022-05-26T09:30:00.000Z")
+/* - OR - */
+cronti(0, "2022-05-26T09:30:00.000Z")
 // => "30 12 26 5 *"
 
-cronti.onDay("2022-05-26T09:30:00.000Z", 2)
+cronti("onDay", "2022-05-26T09:30:00.000Z", 2)
+/* - OR - */
+cronti(0, "2022-05-26T09:30:00.000Z", 2)
 // => "30 12 24 5 *"
 ```
 
@@ -256,16 +317,17 @@ The crontime expression that will be triggered before the entered date according
 - If only the month(0..11) and weekdays(0..6) parameters are populated, the crontime expression is returned for these weekdays of this month.
 - If no parameters are filled in, the crontime expression is returned for each day of each month.
 
+A parameter can be sent with a valid month, week, weekdays value. Time parameter can be sent in accordance with the pattern. Any numeric value can be used for the tick value.
+
 #### Input
 
 | Parameter                     | Type              | Required | Description                                                                                 |
 |:-----------------------------:|:-----------------:|:--------:|:-------------------------------------------------------------------------------------------:|
-| options (destructuring param) | Object            | true     | Options                                                                                     |
-| options.month                 | Number            | false    | Month(0..11) for crontime expression                                                        |
-| options.week                  | Number            | false    | Week(0,1,2,-1) for crontime expression                                                      |
-| options.weekDays              | Number            | false    | Weekdays(0..6) for crontime expression                                                      |
-| options.time                  | String <dd\:mm>   | false    | Time(dd:mm) for crontime expression                                                         |
-| options.tick                  | Number            | false    | The number of days to subtract from the date. Month and week required parameters for tick   |
+| args.\<month\>                 | Number            | false    | Month(0..11) for crontime expression                                                        |
+| args.\<week\>                  | Number            | false    | Week(0,1,2,-1) for crontime expression                                                      |
+| args.\<weekDays\>              | Number            | false    | Weekdays(0..6) for crontime expression                                                      |
+| args.\<time\>                  | String <dd\:mm>   | false    | Time(dd:mm) for crontime expression                                                         |
+| args.\<tick\>                  | Number            | false    | The number of days to subtract from the date. Month and week required parameters for tick   |
 
 #### Output
 
@@ -279,39 +341,57 @@ The crontime expression that will be triggered before the entered date according
 const cronti = require("cronti")
 
 // ! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
-cronti.onTime({month: 4, week: 2})
+cronti("onTime", "4M", "2W")
+/* - OR - */
+cronti(3, "4M", "2W")
 // => "30 12 15-21 5 *"
 
 // ! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
-cronti.onTime({month: 4, week: 2, weekDays: 3})
+cronti("onTime", "4M", "2W", "3WD")
+/* - OR - */
+cronti(3, "4M", "2W", "3WD")
 // => "30 12 18 5 *"
 
 // ! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
-cronti.onTime({week: 0})
+cronti("onTime", "0W")
+/* - OR - */
+cronti(3, "0W")
 // => "30 12 1-7 * *"
 
 // ! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
-cronti.onTime({month: 2})
+cronti("onTime", "2M")
+/* - OR - */
+cronti(3, "2M")
 // => "30 12 * 3 *"
 
 // ! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
-cronti.onTime({weekDays: 6})
+cronti("onTime", "6WD")
+/* - OR - */
+cronti(3, "6WD")
 // => "30 12 * * 6"
 
 // ! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
-cronti.onTime({month: 3, weekDays: 1})
+cronti("onTime", "3M", "1WD")
+/* - OR - */
+cronti(3, "3M", "1WD")
 // => "30 12 * 4 1"
 
 // ! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
-cronti.onTime({})
+cronti("onTime")
+/* - OR - */
+cronti(3)
 // => "30 12 * * *"
 
 // ! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
-cronti.onTime({month: 4, week: 2, tick: 1})
+cronti("onTime", "4M", "2W", 1)
+/* - OR - */
+cronti(3, "4M", "2W", 1)
 // => "30 12 14-21 5 *"
 
 // ! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
-cronti.onTime({month: 2, time: "09:45"})
+cronti("onTime", "2M", "09:45")
+/* - OR - */
+cronti(3, "2M", "09:45")
 // => "45 09 * 3 *"
 ```
 
@@ -320,12 +400,14 @@ cronti.onTime({month: 2, time: "09:45"})
 The crontime expression that will be triggered every day of the week that the entered date is in returns.
 The crontime expression that will be triggered before the entered date based on the tick value is returned.
 
+A valid date value must be sent as a parameter. Any numeric value can be used for the tick value.
+
 #### Input
 
-| Parameter     | Type                  | Required | Description                                      |
-|:-------------:|:---------------------:|:--------:|:------------------------------------------------:|
-| date          | Date                  | true     | Date of the week for crontime expression         |
-| tick          | Number                | false    | The number of days to subtract from the date     |
+| Parameter       | Type                  | Required | Description                                      |
+|:---------------:|:---------------------:|:--------:|:------------------------------------------------:|
+| args.\<date\>   | Date                  | true     | Date of the week for crontime expression         |
+| args.\<tick\>   | Number                | false    | The number of days to subtract from the date     |
 
 #### Output
 
@@ -338,10 +420,14 @@ The crontime expression that will be triggered before the entered date based on 
 ```js
 const cronti = require("cronti")
 
-cronti.onWeek("2022-05-26T09:30:00.000Z")
+cronti("onWeek", "2022-05-26T09:30:00.000Z")
+/* - OR - */
+cronti(1, "2022-05-26T09:30:00.000Z")
 // => "30 12 22-28 5-5 *"
 
-cronti.onWeek("2022-05-26T09:30:00.000Z", 2)
+cronti("onWeek", "2022-05-26T09:30:00.000Z", 2)
+/* - OR - */
+cronti(1, "2022-05-26T09:30:00.000Z", 2)
 // => "30 12 20-28 5-5 *"
 ```
 
