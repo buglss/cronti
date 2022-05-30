@@ -3,9 +3,7 @@
  * According to step parameter, it is specified in which intervals it will work between two dates.
  * The step parameter is used in days, hours or minutes.
  * 
- * @param {Date} startDate Cron start date
- * @param {Date} endDate Cron end date
- * @param {"<Number>d"|"<Number>h"|"<Number>m"} step Specifies at what steps to run.
+ * @param {Array} args Cron start date, cron end date and specifies at what steps to run.
  * 
  * @returns {String} crontime
  * 
@@ -30,13 +28,18 @@
  * @license GPL-3.0
  */
 
-module.exports = function(startDate, endDate, step) {
-    if(!startDate || !endDate) return
+module.exports = function(...args) {
+    let startDate, endDate, step
+    for(let arg of args) {
+        if(startDate && !isNaN(startDate) && !endDate && isNaN(endDate)) endDate = new Date(arg);
+        if(!startDate && isNaN(startDate)) startDate = new Date(arg);
+        if(!step && typeof arg === "string" && /^[0-9]{1,3}(d|h|m)$/.test(arg) && !isNaN(+arg.replace(/d|h|m/g, ""))) step = arg;
+        if(startDate && endDate && step) break;
+    }
 
-    date = new Date(startDate)
-    endDate = new Date(endDate)
+    if((!startDate && isNaN(startDate)) || (!endDate && isNaN(endDate))) return ""
 
-    if(isNaN(startDate) || isNaN(endDate)) return
+    if(startDate > endDate) [startDate, endDate] = [endDate, startDate]
 
     let hours = startDate.getHours()
     let minutes = startDate.getMinutes()

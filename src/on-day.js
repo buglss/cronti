@@ -2,8 +2,7 @@
  * Returns the crontime equivalent of the entered date value, repeating every year.
  * The crontime expression that will be triggered before the entered date according to the tick value is returned.
  * 
- * @param {Date} date Used date for crontime
- * @param {Number} [tick=0] The number of days to subtract from the date.
+ * @param {Array} args Used date for crontime and the number of days to subtract from the date.
  * 
  * @returns {String} Crontime
  * 
@@ -20,12 +19,17 @@
  * @license GPL-3.0
  */
 
-module.exports = function(date, tick = 0) {
-    if(!date) return
+module.exports = function(...args) {
+    let date, tick
+    for(let arg of args) {
+        if(!date && isNaN(date)) date = new Date(arg);
+        if(!tick && typeof arg === "number") tick = arg;
+        if(date && tick) break;
+    }
 
-    date = new Date(date)
+    if(!date && isNaN(date)) return ""
 
-    if(isNaN(date) || isNaN(+tick)) return
+    tick = tick || 0
 
     date.setDate(date.getDate() - Number(tick))
 

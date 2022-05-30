@@ -1,3 +1,7 @@
+/*
+ * @license GPL-3.0
+ */
+
 const assert = require("assert")
 const onDay = require("../src/on-day")
 

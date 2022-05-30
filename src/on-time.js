@@ -15,12 +15,7 @@ const weekOfDate = require("../lib/week-of-date")
  * If only the month(0..11) and weekdays(0..6) parameters are populated, the crontime expression is returned for these weekdays of this month.
  * If no parameters are filled in, the crontime expression is returned for each day of each month.
  * 
- * @param {Object} options Options.
- * @param {Number=} options.month Month(0..11) for crontime expression.
- * @param {Number=} options.week Week(0,1,2,-1) for crontime expression.
- * @param {Number=} options.weekDays Weekdays(0..6) for crontime expression.
- * @param {"dd:mm"} [options.time="12:30"] Time(dd:mm) for crontime expression.
- * @param {Number=} [options.tick=0] The number of days to subtract from the date. Month and week required parameters for tick.
+ * @param {Array} args Options. Month(0..11) for crontime expression. Week(0,1,2,-1) for crontime expression. Weekdays(0..6) for crontime expression. Time(dd:mm) for crontime expression. The number of days to subtract from the date. Month and week required parameters for tick.
  * 
  * @returns {String} Crontime.
  * 
@@ -74,26 +69,26 @@ const weekOfDate = require("../lib/week-of-date")
  * @license GPL-3.0
  */
 
-module.exports = function({ month, week, weekDays, time = "12:30", tick = 0 }) {
-    const isValidMonth = !month || [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].includes(+month)
+module.exports = function(...args) {
+    let month, week, weekDays, time, tick
+    for(let arg of args) {
+        if(!month && typeof arg === "string" && /^\dM$/.test(arg) && isNaN(month)) (month = +(arg.replace(/M/g, "")), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].includes(month) ? month : false);
+        if(!week && typeof arg === "string" && /^\dW$/.test(arg) && isNaN(week)) (week = +(arg.replace(/W/g, "")), [0, 1, 2, -1].includes(week) ? week : false);
+        if(!weekDays && typeof arg === "string" && /^\dWD$/.test(arg) && isNaN(weekDays)) (weekDays = +(arg.replace(/WD/g, "")), [0, 1, 2, 3, 4, 5, 6].includes(weekDays) ? weekDays : false);
+        if(!time && typeof arg === "string" && /^(([0-1][0-9])|(2[0-3])):(([0-5][0-9]))$/.test(arg)) time = arg;
+        if(!tick && typeof arg === "number") tick = arg;
+        if(month && week && weekDays && time & tick) break;
+    }
 
-    // 0: first, 1: second, 2: third, -1: last
-    const isValidWeek = !week || [0, 1, 2, -1].includes(+week)
-
-    const isValidTime = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/.test(time)
-    const isValidDay = !weekDays || [0, 1, 2, 3, 4, 5, 6].includes(+weekDays)
-    if(!isValidMonth || !isValidWeek || !isValidDay || !isValidTime || isNaN(+tick)) return
+    time = time || "12:30"
+    tick = tick || 0
 
     let now = new Date()
     let thisMonth = now.getMonth() + 1
     let thisYear = now.getFullYear()
     let [hours, minutes] = time.split(":")
-    tick = Number(tick)
 
     if((month || month === 0) && (week || week === 0)) {
-        month = Number(month)
-        week = Number(week)
-
         let wod = weekOfDate(now)
 
         if(!wod) return
@@ -101,16 +96,13 @@ module.exports = function({ month, week, weekDays, time = "12:30", tick = 0 }) {
         if(thisMonth > month) thisYear++
         else if(thisMonth === month) {
             if(weekDays || weekDays === 0) {
-                weekDays = Number(weekDays)
                 let date = dateOfMonth({ month, week, weekDays, time, year: thisYear })
                 let diff = diffSecondsUptoToday(date)
                 if(diff < 0) thisYear++
-            }
-            else if((wod.index > week) && (week !== -1)) thisYear++
+            } else if((wod.index > week) && (week !== -1)) thisYear++
         }
 
         if(weekDays || weekDays === 0) {
-            weekDays = Number(weekDays)
             let date = dateOfMonth({ month, week, weekDays, time, year: thisYear })
             if(tick) date.setDate(date.getDate() - tick)
             let mins = date.getMinutes()
@@ -118,8 +110,7 @@ module.exports = function({ month, week, weekDays, time = "12:30", tick = 0 }) {
             let days = date.getDate()
             month = date.getMonth() + 1
             return `${mins} ${hours} ${days} ${month} *`
-        }
-        else {
+        } else {
             week = weekOfMonth({ month, week, year: thisYear })
             let firstDate = week[0]
             let lastDate = week[week.length - 1]
@@ -134,9 +125,7 @@ module.exports = function({ month, week, weekDays, time = "12:30", tick = 0 }) {
 
             return `${minutes} ${hours} ${firstDate}-${lastDate} ${++firstMonth}-${++month} *`
         }
-    }
-    else if((!month && month !== 0) && (week || week === 0) && (!weekDays && weekDays !== 0)) {
-        week = Number(week)
+    } else if((!month && month !== 0) && (week || week === 0) && (!weekDays && weekDays !== 0)) {
 
         if(week === -1) return
 
@@ -154,10 +143,9 @@ module.exports = function({ month, week, weekDays, time = "12:30", tick = 0 }) {
         }
 
         return crontime
-    }
-    else {
-        month = (month || month === 0) ? Number(month) + 1 : "*"
-        weekDays = (weekDays || weekDays === 0) ? Number(weekDays) : "*"
+    } else {
+        month = (month || month === 0) ? month + 1 : "*"
+        weekDays = (weekDays || weekDays === 0) ? weekDays : "*"
         return minutes + " " + hours + " * " + month + " " + weekDays
     }
 }

@@ -5,8 +5,7 @@ const weekOfDate = require("../lib/week-of-date")
  * The crontime expression that will be triggered every day of the week that the entered date is in returns.
  * The crontime expression that will be triggered before the entered date based on the tick value is returned.
  * 
- * @param {Date} date Date of the week for crontime
- * @param {Number=} [tick=0] The number of days to subtract from the date.
+ * @param {Array} args Date of the week for crontime and the number of days to subtract from the date.
  * 
  * @returns {String} Crontime
  * 
@@ -23,12 +22,17 @@ const weekOfDate = require("../lib/week-of-date")
  * @license GPL-3.0
  */
 
-module.exports = function(date, tick = 0) {
-    if(!date) return
+module.exports = function(...args) {
+    let date, tick
+    for(let arg of args) {
+        if(!date && isNaN(date)) date = new Date(arg);
+        if(!tick && typeof arg === "number") tick = arg;
+        if(date && tick) break;
+    }
 
-    date = new Date(date)
+    if(!date && isNaN(date)) return ""
 
-    if(isNaN(date) || isNaN(+tick)) return
+    tick = tick || 0
 
     let thisYear = new Date().getFullYear()
     let diff = 0
@@ -42,7 +46,7 @@ module.exports = function(date, tick = 0) {
 
     let wod = weekOfDate(date)
 
-    if(!wod) return
+    if(!wod) return ""
 
     let week = wod.week
     let month = date.getMonth()

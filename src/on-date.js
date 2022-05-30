@@ -1,7 +1,7 @@
 /**
  * Returns the crontime equivalent of the entered date value, repeated every month and every year.
  * 
- * @param {Date} date Used date for crontime
+ * @param {Array} args Used date for crontime
  * 
  * @returns {String} Crontime
  * 
@@ -14,12 +14,14 @@
  * @license GPL-3.0
  */
 
-module.exports = function(date) {
-    if(!date) return
+module.exports = function(...args) {
+    let date
+    for(let arg of args) {
+        if(!date && isNaN(date)) date = new Date(arg);
+        if(date) break;
+    }
 
-    date = new Date(date)
-
-    if(isNaN(date)) return
+    if(!date && isNaN(date)) return ""
 
     let days = date.getDate()
     let hours = date.getHours()

@@ -4,7 +4,7 @@ const isValidCronExpression = require("../lib/is-valid-cron-expression")
  * Returns the crontime of the valid crontime expression.
  * Returns undefined if invalid crontime expression.
  * 
- * @param {String} crontime Crontime
+ * @param {Array} args Crontime
  * 
  * @returns {String} Crontime
  * 
@@ -17,8 +17,14 @@ const isValidCronExpression = require("../lib/is-valid-cron-expression")
  * @license GPL-3.0
  */
 
-module.exports = function(crontime) {
-    if(!isValidCronExpression(crontime)) return
+module.exports = function(...args) {
+    let crontime
+    for(let arg of args) {
+        if(!crontime && typeof arg === "string" && isValidCronExpression(arg)) crontime = arg;
+        if(crontime) break;
+    }
+
+    if(!crontime) return ""
 
     return crontime
 }
