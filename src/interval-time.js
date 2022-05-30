@@ -33,7 +33,7 @@
 module.exports = function(startDate, endDate, step) {
     if(!startDate || !endDate) return
 
-    date = new Date(startDate)
+    startDate = new Date(startDate)
     endDate = new Date(endDate)
 
     if(isNaN(startDate) || isNaN(endDate)) return
