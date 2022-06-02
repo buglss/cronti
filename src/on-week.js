@@ -23,11 +23,12 @@ const weekOfDate = require("../lib/week-of-date")
  */
 
 module.exports = function(...args) {
-    let date, tick
+    let date, tick, firstDayOfWeek
     for(let arg of args) {
         if(!date && isNaN(date)) date = new Date(arg);
         if(!tick && typeof arg === "number") tick = arg;
-        if(date && tick) break;
+        if(!firstDayOfWeek && typeof arg === "string" && /^\dFD$/.test(arg) && isNaN(firstDayOfWeek)) (firstDayOfWeek = +(arg.replace(/FD/g, "")), [0, 1, 2, 3, 4, 5, 6].includes(firstDayOfWeek) ? firstDayOfWeek : false);
+        if(date && tick && firstDayOfWeek) break;
     }
 
     if(!date && isNaN(date)) return ""
@@ -44,7 +45,7 @@ module.exports = function(...args) {
     }
     else date.setFullYear(thisYear + 1)
 
-    let wod = weekOfDate(date)
+    let wod = weekOfDate(date, firstDayOfWeek)
 
     if(!wod) return ""
 
@@ -57,7 +58,7 @@ module.exports = function(...args) {
     let firstMonth = month
 
     if(tick) {
-        let startDate = new Date(thisYear, month, firstDay)
+        let startDate = new Date(date.getFullYear(), month, firstDay)
 
         startDate.setDate(startDate.getDate() - Number(tick))
 

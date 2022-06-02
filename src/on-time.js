@@ -70,14 +70,15 @@ const weekOfDate = require("../lib/week-of-date")
  */
 
 module.exports = function(...args) {
-    let month, week, weekDays, time, tick
+    let month, week, weekDays, time, tick, firstDayOfWeek
     for(let arg of args) {
         if(!month && typeof arg === "string" && /^\dM$/.test(arg) && isNaN(month)) (month = +(arg.replace(/M/g, "")), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].includes(month) ? month : false);
         if(!week && typeof arg === "string" && /^\dW$/.test(arg) && isNaN(week)) (week = +(arg.replace(/W/g, "")), [0, 1, 2, -1].includes(week) ? week : false);
         if(!weekDays && typeof arg === "string" && /^\dWD$/.test(arg) && isNaN(weekDays)) (weekDays = +(arg.replace(/WD/g, "")), [0, 1, 2, 3, 4, 5, 6].includes(weekDays) ? weekDays : false);
         if(!time && typeof arg === "string" && /^(([0-1][0-9])|(2[0-3])):(([0-5][0-9]))$/.test(arg)) time = arg;
         if(!tick && typeof arg === "number") tick = arg;
-        if(month && week && weekDays && time & tick) break;
+        if(!firstDayOfWeek && typeof arg === "string" && /^\dFD$/.test(arg) && isNaN(firstDayOfWeek)) (firstDayOfWeek = +(arg.replace(/FD/g, "")), [0, 1, 2, 3, 4, 5, 6].includes(firstDayOfWeek) ? firstDayOfWeek : false);
+        if(month && week && weekDays && time && tick && firstDayOfWeek) break;
     }
 
     time = time || "12:30"
@@ -89,21 +90,21 @@ module.exports = function(...args) {
     let [hours, minutes] = time.split(":")
 
     if((month || month === 0) && (week || week === 0)) {
-        let wod = weekOfDate(now)
+        let wod = weekOfDate(now, firstDayOfWeek)
 
         if(!wod) return
 
         if(thisMonth > month) thisYear++
         else if(thisMonth === month) {
             if(weekDays || weekDays === 0) {
-                let date = dateOfMonth({ month, week, weekDays, time, year: thisYear })
+                let date = dateOfMonth({ month, week, weekDays, time, year: thisYear, firstDayOfWeek })
                 let diff = diffSecondsUptoToday(date)
                 if(diff < 0) thisYear++
             } else if((wod.index > week) && (week !== -1)) thisYear++
         }
 
         if(weekDays || weekDays === 0) {
-            let date = dateOfMonth({ month, week, weekDays, time, year: thisYear })
+            let date = dateOfMonth({ month, week, weekDays, time, year: thisYear, firstDayOfWeek })
             if(tick) date.setDate(date.getDate() - tick)
             let mins = date.getMinutes()
             let hours = date.getHours()
@@ -111,7 +112,7 @@ module.exports = function(...args) {
             month = date.getMonth() + 1
             return `${mins} ${hours} ${days} ${month} *`
         } else {
-            week = weekOfMonth({ month, week, year: thisYear })
+            week = weekOfMonth({ month, week, year: thisYear, firstDayOfWeek })
             let firstDate = week[0]
             let lastDate = week[week.length - 1]
             let firstMonth = month
