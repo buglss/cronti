@@ -23,5 +23,6 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/buglss/cronti.git"
-	}
+	},
+	"homepage": "https://buglss.github.io/npm/cronti/"
 }
