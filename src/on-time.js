@@ -18,7 +18,7 @@ const weekOfDate = require("../lib/week-of-date")
  * @param {Array} args Options. Month(0..11) for crontime expression. Week(0,1,2,-1) for crontime expression. Weekdays(0..6) for crontime expression. Time(hh:mm) for crontime expression. The number of days to subtract from the date. Month and week required parameters for tick.
  * @param {String|..M} args.month Month for crontime expression. It takes values between 0 and 11. It takes value <digit>M.
  * @param {String|..W} args.week Week for crontime expression. It takes values 0, 1, 2 and -1. It takes value <digit>W.
- * @param {String|..WD} args.weekDays Weekdays(0..6) for crontime expression. It takes values between 0 and 6. It takes value <digit>WD.
+ * @param {String|..WD} args.weekDays Weekdays for crontime expression. It takes values between 0 and 6. It takes value <digit>WD.
  * @param {String|hh:dd} args.time Time(dd:mm) for crontime expression.
  * @param {Number} args.tick The number of days to subtract from the date.
  * @param {String|..FD} args.firstDayOfWeek First day of week. It takes values between 0 and 6. It takes value <digit>FD.

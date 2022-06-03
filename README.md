@@ -349,13 +349,14 @@ A parameter can be sent with a valid month, week, weekdays value. Time parameter
 
 #### Input
 
-| Parameter                     | Type              | Required | Description                                                                                 |
-|:-----------------------------:|:-----------------:|:--------:|:-------------------------------------------------------------------------------------------:|
-| args.\<month\>                 | Number            | false    | Month(0..11) for crontime expression                                                        |
-| args.\<week\>                  | Number            | false    | Week(0,1,2,-1) for crontime expression                                                      |
-| args.\<weekDays\>              | Number            | false    | Weekdays(0..6) for crontime expression                                                      |
-| args.\<time\>                  | String <dd\:mm>   | false    | Time(dd:mm) for crontime expression                                                         |
-| args.\<tick\>                  | Number            | false    | The number of days to subtract from the date. Month and week required parameters for tick   |
+| Parameter                  | Type              | Required | Description                                                                                            |
+|:--------------------------:|:-----------------:|:--------:|:------------------------------------------------------------------------------------------------------:|
+| args.\<month\>             | String <..M>      | false    | Month for crontime expression. It takes values between 0 and 11. It takes value <digit>M               |
+| args.\<week\>              | String <..W>      | false    | Week for crontime expression. It takes values 0, 1, 2 and -1. It takes value <digit>W.                 |
+| args.\<weekDays\>          | String <..WD>     | false    | Weekdays for crontime expression. It takes values between 0 and 6. It takes value <digit>WD.           |
+| args.\<time\>              | String <dd\:mm>   | false    | Time(dd:mm) for crontime expression                                                                    |
+| args.\<tick\>              | Number            | false    | The number of days to subtract from the date. Month and week required parameters for tick              |
+| args.\<firstDayOfWeek\>    | String            | false    | First day of week. It takes values between 0 and 6. It takes value <digit>FD. Default value is monday  |
 
 #### Output
 
@@ -486,10 +487,11 @@ A valid date value must be sent as a parameter. Any numeric value can be used fo
 
 #### Input
 
-| Parameter       | Type                  | Required | Description                                      |
-|:---------------:|:---------------------:|:--------:|:------------------------------------------------:|
-| args.\<date\>   | Date                  | true     | Date of the week for crontime expression         |
-| args.\<tick\>   | Number                | false    | The number of days to subtract from the date     |
+| Parameter                 | Type                  | Required | Description                                                                                            |
+|:-------------------------:|:---------------------:|:--------:|:------------------------------------------------------------------------------------------------------:|
+| args.\<date\>             | Date                  | true     | Date of the week for crontime expression                                                               |
+| args.\<tick\>             | Number                | false    | The number of days to subtract from the date                                                           |
+| args.\<firstDayOfWeek\>   | String                | false    | First day of week. It takes values between 0 and 6. It takes value <digit>FD. Default value is monday  |
 
 #### Output
 

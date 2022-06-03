@@ -349,13 +349,14 @@ Geçerli bir ay, hafta veya hafta içi parametre değeri gönderilebilir. Patern
 
 #### Girdi
 
-| Parameter                     | Tip              | Zorunluluk | Açıklama                                                                          |
-|:-----------------------------:|:-----------------:|:--------:|:----------------------------------------------------------------------------------:|
-| args.\<month\>                | Number            | hayır    | Crontime ifadesi için ay (0..11)                                                   |
-| args.\<week\>                 | Number            | hayır    | Crontime ifadesi için hafta (0,1,2,-1)                                             |
-| args.\<weekDays\>             | Number            | hayır    | Crontime ifadesi için haftanın günleri (0..6)                                      |
-| args.\<time\>                 | String <dd\:mm>   | hayır    | Crontime ifadesi için zaman(gg:dd)                                                 |
-| args.\<tick\>                 | Number            | hayır    | Tarihten çıkarılacak gün sayısı. Ay ve hafta parametreleri olmak zorundadır        |
+| Parameter                 | Tip               | Zorunluluk | Açıklama                                                                                                |
+|:-------------------------:|:-----------------:|:--------:|:---------------------------------------------------------------------------------------------------------:|
+| args.\<month\>            | String <..M>      | hayır    | Crontime ifadesi için ay. 0 ile 11 arasında değerler alır. <sayı>M değerini alır.                         |
+| args.\<week\>             | String <..W>      | hayır    | Crontime ifadesi için hafta. 0, 1, 2 ve -1 değerlerini alır. <sayı>W değerini alır.                       |
+| args.\<weekDays\>         | String <..WD>     | hayır    | Crontime ifadesi için hafta içi günler. 0 ile 6 arasında değerler alır. <sayı>WD değerini alır.           |
+| args.\<time\>             | String <dd\:mm>   | hayır    | Crontime ifadesi için zaman(gg:dd)                                                                        |
+| args.\<tick\>             | Number            | hayır    | Tarihten çıkarılacak gün sayısı. Ay ve hafta parametreleri olmak zorundadır                               |
+| args.\<firstDayOfWeek\>   | String            | hayır    | Haftanın ilk günü. 0 ile 6 arasında değerler alır. <sayı>FD değerini alır. Varsayılan değer pazartesidir  |
 
 #### Çıktı
 
@@ -486,10 +487,11 @@ Parametre olarak geçerli bir tarih değeri gönderilmelidir. Tik değeri için 
 
 #### Girdi
 
-| Parametre     | Tip                  | Zorunluluk | Açıklama                              |
-|:-------------:|:--------------------:|:--------:|:---------------------------------------:|
-| args.\<date\> | Date                 | evet     | Crontime ifadesi için haftanın tarihi   |
-| args.\<tick\> | Number               | hayır    | Tarihten çıkarılacak gün sayıs          |
+| Parametre                 | Tip                  | Zorunluluk | Açıklama                                                                                                |
+|:-------------------------:|:--------------------:|:--------:|:---------------------------------------------------------------------------------------------------------:|
+| args.\<date\>             | Date                 | evet     | Crontime ifadesi için haftanın tarihi                                                                     |
+| args.\<tick\>             | Number               | hayır    | Tarihten çıkarılacak gün sayıs                                                                            |
+| args.\<firstDayOfWeek\>   | String               | hayır    | Haftanın ilk günü. 0 ile 6 arasında değerler alır. <sayı>FD değerini alır. Varsayılan değer pazartesidir  |
 
 #### Çıktı
 
