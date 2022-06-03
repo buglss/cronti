@@ -93,6 +93,7 @@ cronti(0, new Date("2022-05-26 12:30"))
 /* month, week, weekDays, time ve tick parametrelerinin çeşitli kombinasyonlarla crontime ifadesi oluşturun. 
  * Dikkat! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
 */
+/* - Haftanın ilk Günü Pazartesi - */
 cronti("onTime", "4M", "2W")
 /* - VEYA - */
 cronti(3, "4M", "2W")
@@ -107,11 +108,28 @@ cronti("onTime", "3M", "1WD")
 /* - VEYA - */
 cronti(3, "3M", "1WD")
 /* çıktısı "30 12 * 4 1" */
+/* ---------------------------------------------------- */
+/* - Haftanın ilk Günü Pazar - */
+cronti("onTime", "0FD", "4M", "2W")
+/* - VEYA - */
+cronti(3, "0FD", "4M", "2W")
+/* çıktısı "30 12 14-20 5-5 *" */
+/* ---------------------------------------------------- */
+cronti("onTime", "0FD", "4M", "2W", "3WD")
+/* - VEYA - */
+cronti(3, "0FD", "4M", "2W", "3WD")
+/* çıktısı "30 12 17 5 *" */
+/* ---------------------------------------------------- */
+cronti("onTime", "0FD", "3M", "1WD")
+/* - VEYA - */
+cronti(3, "0FD", "3M", "1WD")
+/* çıktısı "30 12 * 4 1" */
 /* ************************************************************************ */
 
 /* Tarihindeki hafta için crontime ifadesi oluşturur.
  * Dikkat! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
 */
+/* - Haftanın ilk Günü Pazartesi - */
 cronti("onWeek", "2022-05-26T09:30:00.000Z")
 /* - VEYA - */
 cronti("onWeek", new Date("2022-05-26 12:30"))
@@ -120,6 +138,16 @@ cronti(1, "2022-05-26T09:30:00.000Z")
 /* - VEYA - */
 cronti(1, new Date("2022-05-26 12:30"))
 /* çıktısı "30 12 22-28 5-5 *" */
+/* ---------------------------------------------------- */
+/* - Haftanın ilk Günü Pazar - */
+cronti("onWeek", "2022-05-26T09:30:00.000Z", "0FD")
+/* - VEYA - */
+cronti("onWeek", new Date("2022-05-26 12:30"), "0FD")
+/* - VEYA - */
+cronti(1, "2022-05-26T09:30:00.000Z", "0FD")
+/* - VEYA - */
+cronti(1, new Date("2022-05-26 12:30"), "0FD")
+/* çıktısı "30 12 21-27 5-5 *" */
 /* ************************************************************************ */
 ```
 
@@ -393,6 +421,60 @@ cronti("onTime", "2M", "09:45")
 /* - VEYA - */
 cronti(3, "2M", "09:45")
 // => "45 09 * 3 *"
+
+// ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
+cronti("onTime", "0FD", "4M", "2W")
+/* - OR - */
+cronti(3, "0FD", "4M", "2W")
+// => "30 12 14-20 5-5 *"
+
+// ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
+cronti("onTime", "0FD", "4M", "2W", "3WD")
+/* - OR - */
+cronti(3, "0FD", "4M", "2W", "3WD")
+// => "30 12 17 5 *"
+
+// ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
+cronti("onTime", "0FD", "0W")
+/* - OR - */
+cronti(3, "0FD", "0W")
+// => "30 12 1-7 * *"
+
+// ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
+cronti("onTime", "0FD", "2M")
+/* - OR - */
+cronti(3, "0FD", "2M")
+// => "30 12 * 3 *"
+
+// ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
+cronti("onTime", "0FD", "6WD")
+/* - OR - */
+cronti(3, "0FD", "6WD")
+// => "30 12 * * 6"
+
+// ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
+cronti("onTime", "0FD", "3M", "1WD")
+/* - OR - */
+cronti(3, "0FD", "3M", "1WD")
+// => "30 12 * 4 1"
+
+// ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
+cronti("onTime", "0FD")
+/* - OR - */
+cronti(3, "0FD")
+// => "30 12 * * *"
+
+// ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
+cronti("onTime", "0FD", "4M", "2W", 1)
+/* - OR - */
+cronti(3, "0FD", "4M", "2W", 1)
+// => "30 12 13-20 5-5 *"
+
+// ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
+cronti("onTime", "0FD", "2M", "09:45")
+/* - OR - */
+cronti(3, "0FD", "2M", "09:45")
+// => "45 09 * 3 *"
 ```
 
 ## onWeek
@@ -429,6 +511,16 @@ cronti("onWeek", "2022-05-26T09:30:00.000Z", 2)
 /* - VEYA - */
 cronti(1, "2022-05-26T09:30:00.000Z", 2)
 // => "30 12 20-28 5-5 *"
+
+cronti("onWeek", "2022-05-26T09:30:00.000Z", "0FD")
+/* - VEYA - */
+cronti(1, "2022-05-26T09:30:00.000Z", "0FD")
+// => "30 12 21-27 5-5 *"
+
+cronti("onWeek", "2022-05-26T09:30:00.000Z", 2, "0FD")
+/* - VEYA - */
+cronti(1, "2022-05-26T09:30:00.000Z", 2, "0FD")
+// => "30 12 19-27 5-5 *"
 ```
 
 # Yazarlar

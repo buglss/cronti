@@ -70,7 +70,7 @@ describe("onTime", function() {
         assert.strictEqual(onTime("0FD", "3M", "1WD"), "30 12 * 4 1")
     })
 
-    it(`onTime("0FD", ) --> "30 12 * * *" --> Returns the crontime expression that will be triggered at 12:30 every day of each month and repeated annually.`, function() {
+    it(`onTime("0FD") --> "30 12 * * *" --> Returns the crontime expression that will be triggered at 12:30 every day of each month and repeated annually.`, function() {
         assert.strictEqual(onTime("0FD", ), "30 12 * * *")
     })
 

@@ -2,6 +2,7 @@
  * Returns the crontime equivalent of the entered date value, repeated every month and every year.
  * 
  * @param {Array} args Used date for crontime
+ * @param {Date} args.date Valid date string
  * 
  * @returns {String} Crontime
  * 

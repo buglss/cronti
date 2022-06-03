@@ -4,6 +4,9 @@
  * The step parameter is used in days, hours or minutes.
  * 
  * @param {Array} args Cron start date, cron end date and specifies at what steps to run.
+ * @param {Date} startDate Valid date string
+ * @param {Date} endDate Valid date string
+ * @param {String|..d|..h|..m} step What steps to run. It takes values <digit>d, <digit>h and <digit>m.
  * 
  * @returns {String} crontime
  * 

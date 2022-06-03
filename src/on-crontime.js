@@ -5,6 +5,7 @@ const isValidCronExpression = require("../lib/is-valid-cron-expression")
  * Returns undefined if invalid crontime expression.
  * 
  * @param {Array} args Crontime
+ * @param {String} args.crontime Valid crontime expression
  * 
  * @returns {String} Crontime
  * 

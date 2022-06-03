@@ -15,7 +15,13 @@ const weekOfDate = require("../lib/week-of-date")
  * If only the month(0..11) and weekdays(0..6) parameters are populated, the crontime expression is returned for these weekdays of this month.
  * If no parameters are filled in, the crontime expression is returned for each day of each month.
  * 
- * @param {Array} args Options. Month(0..11) for crontime expression. Week(0,1,2,-1) for crontime expression. Weekdays(0..6) for crontime expression. Time(dd:mm) for crontime expression. The number of days to subtract from the date. Month and week required parameters for tick.
+ * @param {Array} args Options. Month(0..11) for crontime expression. Week(0,1,2,-1) for crontime expression. Weekdays(0..6) for crontime expression. Time(hh:mm) for crontime expression. The number of days to subtract from the date. Month and week required parameters for tick.
+ * @param {String|..M} args.month Month for crontime expression. It takes values between 0 and 11. It takes value <digit>M.
+ * @param {String|..W} args.week Week for crontime expression. It takes values 0, 1, 2 and -1. It takes value <digit>W.
+ * @param {String|..WD} args.weekDays Weekdays(0..6) for crontime expression. It takes values between 0 and 6. It takes value <digit>WD.
+ * @param {String|hh:dd} args.time Time(dd:mm) for crontime expression.
+ * @param {Number} args.tick The number of days to subtract from the date.
+ * @param {String|..FD} args.firstDayOfWeek First day of week. It takes values between 0 and 6. It takes value <digit>FD.
  * 
  * @returns {String} Crontime.
  * 
@@ -65,6 +71,51 @@ const weekOfDate = require("../lib/week-of-date")
  * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
  * // returns "45 09 * 3 *"
  * onTime({month: 2, time: "09:45"})
+ * 
+ * @example
+ * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+ * // returns "30 12 14-20 5-5 *"
+ * onTime("0FD", "4M", "2W")
+ * 
+ * @example
+ * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+ * // returns "30 12 17 5 *"
+ * onTime("0FD", "4M", "2W", "3WD")
+ * 
+ * @example
+ * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+ * // returns "30 12 1-7 * *"
+ * onTime("0FD", "0W")
+ * 
+ * @example
+ * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+ * // returns "30 12 * 3 *"
+ * onTime("0FD", "2M")
+ * 
+ * @example
+ * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+ * // returns "30 12 * * 6"
+ * onTime("0FD", "6WD")
+ * 
+ * @example
+ * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+ * // returns "30 12 * 4 1"
+ * onTime("0FD", "3M", "1WD")
+ * 
+ * @example
+ * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+ * // returns "30 12 * * *"
+ * onTime("0FD", )
+ * 
+ * @example
+ * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+ * // returns "30 12 13-20 5-5 *"
+ * onTime("0FD", "4M", "2W", 1)
+ * 
+ * @example
+ * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+ * // returns "45 09 * 3 *"
+ * onTime("0FD", "2M", "09:45")
  * 
  * @license GPL-3.0
  */

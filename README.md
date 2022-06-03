@@ -93,6 +93,7 @@ cronti(0, new Date("2022-05-26 12:30"))
 /* Create crontime with various combinations of month, week, weekdays, time and tick parameters.  
  * Attention! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
 */
+/* - First day of week is Monday - */
 cronti("onTime", "4M", "2W")
 /* - OR - */
 cronti(3, "4M", "2W")
@@ -107,11 +108,28 @@ cronti("onTime", "3M", "1WD")
 /* - OR - */
 cronti(3, "3M", "1WD")
 /* returns "30 12 * 4 1" */
+/* ---------------------------------------------------- */
+/* - First day of week is Sunday - */
+cronti("onTime", "0FD", "4M", "2W")
+/* - OR - */
+cronti(3, "0FD", "4M", "2W")
+/* returns "30 12 14-20 5-5 *" */
+/* ---------------------------------------------------- */
+cronti("onTime", "0FD", "4M", "2W", "3WD")
+/* - OR - */
+cronti(3, "0FD", "4M", "2W", "3WD")
+/* returns "30 12 17 5 *" */
+/* ---------------------------------------------------- */
+cronti("onTime", "0FD", "3M", "1WD")
+/* - OR - */
+cronti(3, "0FD", "3M", "1WD")
+/* returns "30 12 * 4 1" */
 /* ************************************************************************ */
 
 /* Generates the cron time for the week the date is in.
  * Attention! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
 */
+/* - First day of week is Monday - */
 cronti("onWeek", "2022-05-26T09:30:00.000Z")
 /* - OR - */
 cronti("onWeek", new Date("2022-05-26 12:30"))
@@ -120,6 +138,16 @@ cronti(1, "2022-05-26T09:30:00.000Z")
 /* - OR - */
 cronti(1, new Date("2022-05-26 12:30"))
 /* returns "30 12 22-28 5-5 *" */
+/* ---------------------------------------------------- */
+/* - First day of week is Sunday - */
+cronti("onWeek", "2022-05-26T09:30:00.000Z", "0FD")
+/* - OR - */
+cronti("onWeek", new Date("2022-05-26 12:30"), "0FD")
+/* - OR - */
+cronti(1, "2022-05-26T09:30:00.000Z", "0FD")
+/* - OR - */
+cronti(1, new Date("2022-05-26 12:30"), "0FD")
+/* returns "30 12 21-27 5-5 *" */
 /* ************************************************************************ */
 ```
 
@@ -393,6 +421,60 @@ cronti("onTime", "2M", "09:45")
 /* - OR - */
 cronti(3, "2M", "09:45")
 // => "45 09 * 3 *"
+
+// ! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+cronti("onTime", "0FD", "4M", "2W")
+/* - OR - */
+cronti(3, "0FD", "4M", "2W")
+// => "30 12 14-20 5-5 *"
+
+// ! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+cronti("onTime", "0FD", "4M", "2W", "3WD")
+/* - OR - */
+cronti(3, "0FD", "4M", "2W", "3WD")
+// => "30 12 17 5 *"
+
+// ! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+cronti("onTime", "0FD", "0W")
+/* - OR - */
+cronti(3, "0FD", "0W")
+// => "30 12 1-7 * *"
+
+// ! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+cronti("onTime", "0FD", "2M")
+/* - OR - */
+cronti(3, "0FD", "2M")
+// => "30 12 * 3 *"
+
+// ! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+cronti("onTime", "0FD", "6WD")
+/* - OR - */
+cronti(3, "0FD", "6WD")
+// => "30 12 * * 6"
+
+// ! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+cronti("onTime", "0FD", "3M", "1WD")
+/* - OR - */
+cronti(3, "0FD", "3M", "1WD")
+// => "30 12 * 4 1"
+
+// ! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+cronti("onTime", "0FD")
+/* - OR - */
+cronti(3, "0FD")
+// => "30 12 * * *"
+
+// ! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+cronti("onTime", "0FD", "4M", "2W", 1)
+/* - OR - */
+cronti(3, "0FD", "4M", "2W", 1)
+// => "30 12 13-20 5-5 *"
+
+// ! The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+cronti("onTime", "0FD", "2M", "09:45")
+/* - OR - */
+cronti(3, "0FD", "2M", "09:45")
+// => "45 09 * 3 *"
 ```
 
 ## onWeek
@@ -429,6 +511,16 @@ cronti("onWeek", "2022-05-26T09:30:00.000Z", 2)
 /* - OR - */
 cronti(1, "2022-05-26T09:30:00.000Z", 2)
 // => "30 12 20-28 5-5 *"
+
+cronti("onWeek", "2022-05-26T09:30:00.000Z", "0FD")
+/* - OR - */
+cronti(1, "2022-05-26T09:30:00.000Z", "0FD")
+// => "30 12 21-27 5-5 *"
+
+cronti("onWeek", "2022-05-26T09:30:00.000Z", 2, "0FD")
+/* - OR - */
+cronti(1, "2022-05-26T09:30:00.000Z", 2, "0FD")
+// => "30 12 19-27 5-5 *"
 ```
 
 # Authors

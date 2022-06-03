@@ -3,6 +3,8 @@
  * The crontime expression that will be triggered before the entered date according to the tick value is returned.
  * 
  * @param {Array} args Used date for crontime and the number of days to subtract from the date.
+ * @param {Date} args.date Valid date string
+ * @param {Number} args.tick Number of tick time
  * 
  * @returns {String} Crontime
  * 
