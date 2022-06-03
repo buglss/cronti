@@ -21,6 +21,7 @@ const weekOfDate = require("../lib/week-of-date")
  * @param {Number=} options.weekDays Weekdays(0..6) for crontime expression.
  * @param {"dd:mm"} [options.time="12:30"] Time(dd:mm) for crontime expression.
  * @param {Number=} [options.tick=0] The number of days to subtract from the date. Month and week required parameters for tick.
+ * @param {Number=} [options.firstDayOfWeek=1] First day of week. It takes values between 0 and 6.
  * 
  * @returns {String} Crontime.
  * 
@@ -71,10 +72,55 @@ const weekOfDate = require("../lib/week-of-date")
  * // returns "45 09 * 3 *"
  * onTime({month: 2, time: "09:45"})
  * 
+ * @example
+ * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+ * // returns "30 12 14-20 5-5 *"
+ * onTime({firstDayOfWeek: 0, month: 4, week: 2})
+ * 
+ * @example
+ * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+ * // returns "30 12 17 5 *"
+ * onTime({firstDayOfWeek: 0, month: 4, week: 2, weekDays: 3})
+ * 
+ * @example
+ * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+ * // returns "30 12 1-7 * *"
+ * onTime({firstDayOfWeek: 0, week: 0})
+ * 
+ * @example
+ * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+ * // returns "30 12 * 3 *"
+ * onTime({firstDayOfWeek: 0, month: 2})
+ * 
+ * @example
+ * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+ * // returns "30 12 * * 6"
+ * onTime({firstDayOfWeek: 0, weekDays: 6})
+ * 
+ * @example
+ * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+ * // returns "30 12 * 4 1"
+ * onTime({firstDayOfWeek: 0, month: 3, weekDays: 1})
+ * 
+ * @example
+ * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+ * // returns "30 12 * * *"
+ * onTime({})firstDayOfWeek: 0, 
+ * 
+ * @example
+ * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+ * // returns "30 12 13-20 5-5 *"
+ * onTime({firstDayOfWeek: 0, month: 4, week: 2, tick: 1})
+ * 
+ * @example
+ * // The crontime expression change according to the time they were created. The time to be tested is 27.05.2022.
+ * // returns "45 09 * 3 *"
+ * onTime({firstDayOfWeek: 0, month: 2, time: "09:45"})
+ * 
  * @license GPL-3.0
  */
 
-module.exports = function({ month, week, weekDays, time = "12:30", tick = 0 }) {
+module.exports = function({ month, week, weekDays, time = "12:30", tick = 0, firstDayOfWeek = 1 }) {
     const isValidMonth = !month || [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].includes(+month)
 
     // 0: first, 1: second, 2: third, -1: last
@@ -94,7 +140,7 @@ module.exports = function({ month, week, weekDays, time = "12:30", tick = 0 }) {
         month = Number(month)
         week = Number(week)
 
-        let wod = weekOfDate(now)
+        let wod = weekOfDate(now, firstDayOfWeek)
 
         if(!wod) return
 
@@ -102,7 +148,7 @@ module.exports = function({ month, week, weekDays, time = "12:30", tick = 0 }) {
         else if(thisMonth === month) {
             if(weekDays || weekDays === 0) {
                 weekDays = Number(weekDays)
-                let date = dateOfMonth({ month, week, weekDays, time, year: thisYear })
+                let date = dateOfMonth({ month, week, weekDays, time, year: thisYear, firstDayOfWeek })
                 let diff = diffSecondsUptoToday(date)
                 if(diff < 0) thisYear++
             }
@@ -111,7 +157,7 @@ module.exports = function({ month, week, weekDays, time = "12:30", tick = 0 }) {
 
         if(weekDays || weekDays === 0) {
             weekDays = Number(weekDays)
-            let date = dateOfMonth({ month, week, weekDays, time, year: thisYear })
+            let date = dateOfMonth({ month, week, weekDays, time, year: thisYear, firstDayOfWeek })
             if(tick) date.setDate(date.getDate() - tick)
             let mins = date.getMinutes()
             let hours = date.getHours()
@@ -120,7 +166,7 @@ module.exports = function({ month, week, weekDays, time = "12:30", tick = 0 }) {
             return `${mins} ${hours} ${days} ${month} *`
         }
         else {
-            week = weekOfMonth({ month, week, year: thisYear })
+            week = weekOfMonth({ month, week, year: thisYear, firstDayOfWeek })
             let firstDate = week[0]
             let lastDate = week[week.length - 1]
             let firstMonth = month

@@ -7,6 +7,7 @@ const weekOfDate = require("../lib/week-of-date")
  * 
  * @param {Date} date Date of the week for crontime
  * @param {Number=} [tick=0] The number of days to subtract from the date.
+ * @param {Number=} [firstDayOfWeek=1] First day of week. It takes values between 0 and 6.
  * 
  * @returns {String} Crontime
  * 
@@ -20,10 +21,18 @@ const weekOfDate = require("../lib/week-of-date")
  * // returns "30 12 20-28 5-5 *"
  * onWeek("2022-05-26T09:30:00.000Z", 2)
  * 
+ * @example
+ * // returns "30 12 21-27 5-5 *"
+ * onWeek("2022-05-26T09:30:00.000Z", 0)
+ * 
+ * @example
+ * // returns "30 12 19-27 5-5 *"
+ * onWeek("2022-05-26T09:30:00.000Z", 2, 0)
+ * 
  * @license GPL-3.0
  */
 
-module.exports = function(date, tick = 0) {
+module.exports = function(date, tick = 0, firstDayOfWeek = 1) {
     if(!date) return
 
     date = new Date(date)
@@ -40,7 +49,7 @@ module.exports = function(date, tick = 0) {
     }
     else date.setFullYear(thisYear + 1)
 
-    let wod = weekOfDate(date)
+    let wod = weekOfDate(date, firstDayOfWeek)
 
     if(!wod) return
 
@@ -53,7 +62,7 @@ module.exports = function(date, tick = 0) {
     let firstMonth = month
 
     if(tick) {
-        let startDate = new Date(thisYear, month, firstDay)
+        let startDate = new Date(date.getFullYear(), month, firstDay)
 
         startDate.setDate(startDate.getDate() - Number(tick))
 
