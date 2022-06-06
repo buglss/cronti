@@ -8,7 +8,7 @@
     "demo": "node main.js"
   },
   "author": "Levent Sencer Şahin | @buglss",
-  "license": "GPL-3.0",
+  "license": "Apache-2.0",
   "dependencies": {
     "cronti": "^1.0.4"
   }

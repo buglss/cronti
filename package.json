@@ -16,7 +16,7 @@
 		"email": "l.sencer.sahin@gmail.com",
 		"url": "https://buglss.github.io"
 	},
-	"license": "GPL-3.0",
+	"license": "Apache-2.0",
 	"devDependencies": {
 		"mocha": "^9.2.0"
 	},
