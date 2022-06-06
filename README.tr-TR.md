@@ -55,16 +55,16 @@ cronti("onIntervalTime", "2022-04-25T09:30:00.000Z", "2022-05-15T09:30:00.000Z")
 /* - VEYA - */
 cronti("onIntervalTime", new Date("2022-04-25 12:30"), new Date("2022-05-15 12:30"))
 /* - VEYA - */
-cronti(2, "2022-04-25T09:30:00.000Z", "2022-05-15T09:30:00.000Z")
+cronti(1, "2022-04-25T09:30:00.000Z", "2022-05-15T09:30:00.000Z")
 /* - VEYA - */
-cronti(2, new Date("2022-04-25 12:30"), new Date("2022-05-15 12:30"))
+cronti(1, new Date("2022-04-25 12:30"), new Date("2022-05-15 12:30"))
 /* çıktısı "30 12 25-15 4-5 *" */
 /* ************************************************************************ */
 
 /* Geçerli crontime ifadesi girin crontime ifadesi alın. */
 cronti("onCrontime", "0 2 * * *")
 /* - VEYA - */
-cronti(4, "0 2 * * *")
+cronti(3, "0 2 * * *")
 /* çıktısı "0 2 * * *" */
 /* ************************************************************************ */
 
@@ -73,21 +73,19 @@ cronti("onDate", "2022-05-26T09:30:00.000Z")
 /* - VEYA - */
 cronti("onDate", new Date("2022-05-26 12:30"))
 /* - VEYA - */
-cronti(5, "2022-05-26T09:30:00.000Z")
+cronti(4, "2022-05-26T09:30:00.000Z")
 /* - VEYA - */
-cronti(5, new Date("2022-05-26 12:30"))
+cronti(4, new Date("2022-05-26 12:30"))
 /* çıktısı "30 12 26 * *" */
 /* ************************************************************************ */
-
-/* Belirli bir tarihteki güne ait crontime ifadesi oluşturun. */
-cronti("onDay", "2022-05-26T09:30:00.000Z")
+cronti("onDate", "2022-05-26T09:30:00.000Z", true)
 /* - VEYA - */
-cronti("onDay", new Date("2022-05-26 12:30"))
+cronti("onDate", new Date("2022-05-26 12:30"), true)
 /* - VEYA - */
-cronti(0, "2022-05-26T09:30:00.000Z")
+cronti(4, "2022-05-26T09:30:00.000Z", true)
 /* - VEYA - */
-cronti(0, new Date("2022-05-26 12:30"))
-/* çıktısı "30 12 26 5 *" */
+cronti(4, new Date("2022-05-26 12:30"), true)
+/* returns "30 12 26 5 *" */
 /* ************************************************************************ */
 
 /* month, week, weekDays, time ve tick parametrelerinin çeşitli kombinasyonlarla crontime ifadesi oluşturun. 
@@ -96,33 +94,33 @@ cronti(0, new Date("2022-05-26 12:30"))
 /* - Haftanın ilk Günü Pazartesi - */
 cronti("onTime", "4M", "2W")
 /* - VEYA - */
-cronti(3, "4M", "2W")
+cronti(2, "4M", "2W")
 /* çıktısı "30 12 15-21 5 *" */
 /* ---------------------------------------------------- */
 cronti("onTime", "4M", "2W", "3WD")
 /* - VEYA - */
-cronti(3, "4M", "2W", "3WD")
+cronti(2, "4M", "2W", "3WD")
 /* çıktısı "30 12 18 5 *" */
 /* ---------------------------------------------------- */
 cronti("onTime", "3M", "1WD")
 /* - VEYA - */
-cronti(3, "3M", "1WD")
+cronti(2, "3M", "1WD")
 /* çıktısı "30 12 * 4 1" */
 /* ---------------------------------------------------- */
 /* - Haftanın ilk Günü Pazar - */
 cronti("onTime", "0FD", "4M", "2W")
 /* - VEYA - */
-cronti(3, "0FD", "4M", "2W")
+cronti(2, "0FD", "4M", "2W")
 /* çıktısı "30 12 14-20 5-5 *" */
 /* ---------------------------------------------------- */
 cronti("onTime", "0FD", "4M", "2W", "3WD")
 /* - VEYA - */
-cronti(3, "0FD", "4M", "2W", "3WD")
+cronti(2, "0FD", "4M", "2W", "3WD")
 /* çıktısı "30 12 17 5 *" */
 /* ---------------------------------------------------- */
 cronti("onTime", "0FD", "3M", "1WD")
 /* - VEYA - */
-cronti(3, "0FD", "3M", "1WD")
+cronti(2, "0FD", "3M", "1WD")
 /* çıktısı "30 12 * 4 1" */
 /* ************************************************************************ */
 
@@ -134,9 +132,9 @@ cronti("onWeek", "2022-05-26T09:30:00.000Z")
 /* - VEYA - */
 cronti("onWeek", new Date("2022-05-26 12:30"))
 /* - VEYA - */
-cronti(1, "2022-05-26T09:30:00.000Z")
+cronti(0, "2022-05-26T09:30:00.000Z")
 /* - VEYA - */
-cronti(1, new Date("2022-05-26 12:30"))
+cronti(0, new Date("2022-05-26 12:30"))
 /* çıktısı "30 12 22-28 5-5 *" */
 /* ---------------------------------------------------- */
 /* - Haftanın ilk Günü Pazar - */
@@ -144,9 +142,9 @@ cronti("onWeek", "2022-05-26T09:30:00.000Z", "0FD")
 /* - VEYA - */
 cronti("onWeek", new Date("2022-05-26 12:30"), "0FD")
 /* - VEYA - */
-cronti(1, "2022-05-26T09:30:00.000Z", "0FD")
+cronti(0, "2022-05-26T09:30:00.000Z", "0FD")
 /* - VEYA - */
-cronti(1, new Date("2022-05-26 12:30"), "0FD")
+cronti(0, new Date("2022-05-26 12:30"), "0FD")
 /* çıktısı "30 12 21-27 5-5 *" */
 /* ************************************************************************ */
 ```
@@ -154,43 +152,85 @@ cronti(1, new Date("2022-05-26 12:30"), "0FD")
 # Dokümantasyon
 
 - [Dokümantasyon](#dokümantasyon)
-  - [onIntervalTime](#onintervaltime)
-    - [Girdi](#girdi)
-    - [Çıktı](#çıktı)
-    - [Örnek](#örnek)
-  - [onCrontime](#oncrontime)
-    - [Girdi](#girdi-1)
-    - [Çıktı](#çıktı-1)
-    - [Örnek](#örnek-1)
-  - [onDate](#ondate)
-    - [Girdi](#girdi-2)
-    - [Çıktı](#çıktı-2)
-    - [Örnek](#örnek-2)
-  - [onDay](#onday)
-    - [Girdi](#girdi-3)
-    - [Çıktı](#çıktı-3)
-    - [Örnek](#örnek-3)
-  - [onTime](#ontime)
-    - [Girdi](#girdi-4)
-    - [Çıktı](#çıktı-4)
-    - [Örnek](#örnek-4)
   - [onWeek](#onweek)
-    - [Girdi](#girdi-5)
-    - [Çıktı](#çıktı-5)
-    - [Örnek](#örnek-5)
+      - [Girdi](#girdi)
+      - [Çıktı](#çıktı)
+      - [Örnek](#örnek)
+  - [onIntervalTime](#onintervaltime)
+      - [Girdi](#girdi-1)
+      - [Çıktı](#çıktı-1)
+      - [Örnek](#örnek-1)
+  - [onTime](#ontime)
+      - [Girdi](#girdi-2)
+      - [Çıktı](#çıktı-2)
+      - [Örnek](#örnek-2)
+  - [onCrontime](#oncrontime)
+      - [Girdi](#girdi-3)
+      - [Çıktı](#çıktı-3)
+      - [Örnek](#örnek-3)
+  - [onDate](#ondate)
+      - [Girdi](#girdi-4)
+      - [Çıktı](#çıktı-4)
+      - [Örnek](#örnek-4)
 
 ``cronti`` fonksiyonu, ilk parametrede metod adını veya dizin değerini alır. Daha sonra sınırsız parametre eklenebilir. Çağrılan metodun fonksiyonuna göre gönderilen parametreler kullanılır.
 
 cronti(<methodName(string)|methodIndex(number)>, <...args>)
 
-| Methods               | Index   | Name             | Description                                                                                          |
-|:---------------------:|:-------:|:----------------:|:----------------------------------------------------------------------------------------------------:|
-| onDay                 | 0       | onDay            | Tarihin belirli gününün crontime ifadesini oluşturun                                                 |
-| onWeek                | 1       | onWeek           | Tarihin bulunduğu hafta için crontime ifadesi üretir                                                 |
-| onIntervalTime        | 2       | onIntervalTime   | İki tarih arasında düzenli aralıklarla çalışacak bir crontime ifadesi oluşturur                      |
-| onTime                | 3       | onTime           | Ay, hafta, hafta içi, saat, dakika ve tick gibi çeşitli kombinasyonlarla crontime ifadesi oluşturur  |
-| onCrontime            | 4       | onCrontime       | Geçerli crontime ifadesi girildiğinde crontime ifadesi döner                                         |
-| onDate                | 5       | onDate           | Belirli bir tarihin crontime ifadesini oluştur                                                       |
+|    Methods     | Index |      Name      |                                             Description                                             |
+| :------------: | :---: | :------------: | :-------------------------------------------------------------------------------------------------: |
+|     onWeek     |   0   |     onWeek     |                        Tarihin bulunduğu hafta için crontime ifadesi üretir                         |
+| onIntervalTime |   1   | onIntervalTime |           İki tarih arasında düzenli aralıklarla çalışacak bir crontime ifadesi oluşturur           |
+|     onTime     |   2   |     onTime     | Ay, hafta, hafta içi, saat, dakika ve tick gibi çeşitli kombinasyonlarla crontime ifadesi oluşturur |
+|   onCrontime   |   3   |   onCrontime   |                    Geçerli crontime ifadesi girildiğinde crontime ifadesi döner                     |
+|     onDate     |   4   |     onDate     |                           Belirli bir tarihin crontime ifadesini oluştur                            |
+
+## onWeek
+
+Girilen tarihin haftasında, her gün tetiklenecek olan crontime ifadesi oluşturur.
+tick değerine göre girilen tarihten önce tetiklenecek olan crontime ifadesi döndürülür.
+
+Parametre olarak geçerli bir tarih değeri gönderilmelidir. Tik değeri için herhangi bir sayısal değer kullanılabilir.
+
+#### Girdi
+
+|        Parametre        |  Tip   | Zorunluluk |                                                 Açıklama                                                 |
+| :---------------------: | :----: | :--------: | :------------------------------------------------------------------------------------------------------: |
+|      args.\<date\>      |  Date  |    evet    |                                  Crontime ifadesi için haftanın tarihi                                   |
+|      args.\<tick\>      | Number |   hayır    |                                      Tarihten çıkarılacak gün sayıs                                      |
+| args.\<firstDayOfWeek\> | String |   hayır    | Haftanın ilk günü. 0 ile 6 arasında değerler alır. <sayı>FD değerini alır. Varsayılan değer pazartesidir |
+
+#### Çıktı
+
+|  Tip   |     Açıklama     |
+| :----: | :--------------: |
+| String | Crontime ifadesi |
+
+#### Örnek
+
+```js
+const cronti = require("cronti")
+
+cronti("onWeek", "2022-05-26T09:30:00.000Z")
+/* - VEYA - */
+cronti(0, "2022-05-26T09:30:00.000Z")
+// => "30 12 22-28 5-5 *"
+
+cronti("onWeek", "2022-05-26T09:30:00.000Z", 2)
+/* - VEYA - */
+cronti(0, "2022-05-26T09:30:00.000Z", 2)
+// => "30 12 20-28 5-5 *"
+
+cronti("onWeek", "2022-05-26T09:30:00.000Z", "0FD")
+/* - VEYA - */
+cronti(0, "2022-05-26T09:30:00.000Z", "0FD")
+// => "30 12 21-27 5-5 *"
+
+cronti("onWeek", "2022-05-26T09:30:00.000Z", 2, "0FD")
+/* - VEYA - */
+cronti(0, "2022-05-26T09:30:00.000Z", 2, "0FD")
+// => "30 12 19-27 5-5 *"
+```
 
 ## onIntervalTime
 
@@ -200,17 +240,17 @@ Parametrelerde 2 tarih değeri olmalıdır. Bu tarihlerin sırası önemli deği
 
 #### Girdi
 
-| Parametre              | Tip                          | Zorunluluk  | Açıklama                                       |
-|:----------------------:|:----------------------------:|:-----------:|:----------------------------------------------:|
-| args.\<startDate\>     | Date                         | evet        | Cron başlangıç tarihi                          |
-| args.\<endDate\>       | Date                         | evet        | Cron bitiş tarihi                              |
-| args.\<step\>          | String <.d \| .h \| .m>      | hayır       | Hangi adımlarda çalıştırılacağını belirtir.    |
+|     Parametre      |           Tip           | Zorunluluk |                  Açıklama                   |
+| :----------------: | :---------------------: | :--------: | :-----------------------------------------: |
+| args.\<startDate\> |          Date           |    evet    |            Cron başlangıç tarihi            |
+|  args.\<endDate\>  |          Date           |    evet    |              Cron bitiş tarihi              |
+|   args.\<step\>    | String <.d \| .h \| .m> |   hayır    | Hangi adımlarda çalıştırılacağını belirtir. |
 
 #### Çıktı
 
-| Tip              | Açıklama            |
-|:----------------:|:-------------------:|
-| String           | Crontime ifadesi    |
+|  Tip   |     Açıklama     |
+| :----: | :--------------: |
+| String | Crontime ifadesi |
 
 #### Örnek
 
@@ -219,118 +259,25 @@ const cronti = require("cronti")
 
 cronti("onIntervalTime", "2022-04-25T09:30:00.000Z", "2022-05-15T09:30:00.000Z")
 /* - VEYA - */
-cronti(2, "2022-04-25T09:30:00.000Z", "2022-05-15T09:30:00.000Z")
+cronti(1, "2022-04-25T09:30:00.000Z", "2022-05-15T09:30:00.000Z")
 // => "30 12 25-15 4-5 *"
 
 cronti("onIntervalTime", "2022-06-10T09:30:00.000Z", "2022-07-20T09:30:00.000Z", "4d")
 /* - VEYA - */
-cronti(2, "2022-06-10T09:30:00.000Z", "2022-07-20T09:30:00.000Z", "4d")
+cronti(1, "2022-06-10T09:30:00.000Z", "2022-07-20T09:30:00.000Z", "4d")
 // => "30 12 10-20/4 6-7 *"
 
 cronti("onIntervalTime", "2022-04-01T09:30:00.000Z", "2022-07-05T09:30:00.000Z", "2h")
 /* - VEYA - */
-cronti(2, "2022-04-01T09:30:00.000Z", "2022-07-05T09:30:00.000Z", "2h")
+cronti(1, "2022-04-01T09:30:00.000Z", "2022-07-05T09:30:00.000Z", "2h")
 // => "30 */2 1-5 4-7 *"
 
 cronti("onIntervalTime", "2022-04-01T09:30:00.000Z", "2022-04-02T09:30:00.000Z", "30m")
 /* - VEYA - */
-cronti(2, "2022-04-01T09:30:00.000Z", "2022-04-02T09:30:00.000Z", "30m")
+cronti(1, "2022-04-01T09:30:00.000Z", "2022-04-02T09:30:00.000Z", "30m")
 // => "*/30 12 1-2 4-4 *"
 ```
 
-## onCrontime
-
-Geçerli crontime ifadesi girilirse crontime ifadesi döner. Geçersiz giriş olursa undefined döner.
-
-Parametrelerde herhangi bir crontime ifadesi kullanılabilir.
-
-#### Girdi
-
-| Parametre            | Tip                  | Zorunluluk | Açıklama             |
-|:--------------------:|:--------------------:|:----------:|:--------------------:|
-| args.\<crontime\>    | String               | evet       | Crontime ifadesi     |
-
-#### Çıktı
-
-| Tip              | Açıklama           |
-|:----------------:|:------------------:|
-| String           | Crontime ifadesi   |
-
-#### Örnek
-
-```js
-const cronti = require("cronti")
-
-cronti("onCrontime", "0 2 * * *")
-/* - VEYA - */
-cronti(4, "0 2 * * *")
-// => "0 2 * * *"
-```
-
-## onDate
-
-Girilen tarihin crontime ifadesi oluşturulur. Bu ifadeye göre her ay ve her yıl tekrarlanır.
-
-Parametre olarak geçerli bir tarih değeri gönderilmelidir.
-
-#### Girdi
-
-| Parametre       | Tip                  | Zorunluluk | Açıklama                                  |
-|:---------------:|:--------------------:|:----------:|:-----------------------------------------:|
-| args.\<date\>   | Date                 | evet       | Crontime ifadesi için kullanılan tarih    |
-
-#### Çıktı
-
-| Tip              | Açıklama          |
-|:----------------:|:-----------------:|
-| String           | Crontime ifadesi  |
-
-#### Örnek
-
-```js
-const cronti = require("cronti")
-
-cronti("onDate", "2022-05-26T09:30:00.000Z")
-/* - VEYA - */
-cronti(5, "2022-05-26T09:30:00.000Z")
-// => "30 12 26 * *"
-```
-
-## onDay
-
-Girilen tarihin crontime ifadesini döndürür. Bu ifadeye göre herr yıl tekrarlanır.
-Tik değerine göre girilen tarihten önce tetiklenecek olan crontime ifadesi döndürülür.
-
-Parametre olarak geçerli bir tarih değeri gönderilmelidir. Tick değeri için herhangi bir sayısal değer kullanılabilir.
-
-#### Girdi
-
-| Parametre     | Tip                  | Zorunluluk | Açıklama                                |
-|:-------------:|:--------------------:|:----------:|:---------------------------------------:|
-| args.\<date\> | Date                 | evet       | Crontime ifadesi için kullanılan tarih  |
-| args.\<tick\> | Number               | hayır      | Tarihten çıkarılacak gün sayısı         |
-
-#### Çıktı
-
-| Tip              | Açıklama          |
-|:----------------:|:-----------------:|
-| String           | Crontime ifadesi  |
-
-#### Örnek
-
-```js
-const cronti = require("cronti")
-
-cronti("onDay", "2022-05-26T09:30:00.000Z")
-/* - VEYA - */
-cronti(0, "2022-05-26T09:30:00.000Z")
-// => "30 12 26 5 *"
-
-cronti("onDay", "2022-05-26T09:30:00.000Z", 2)
-/* - VEYA - */
-cronti(0, "2022-05-26T09:30:00.000Z", 2)
-// => "30 12 24 5 *"
-```
 
 ## onTime
 
@@ -349,20 +296,20 @@ Geçerli bir ay, hafta veya hafta içi parametre değeri gönderilebilir. Patern
 
 #### Girdi
 
-| Parameter                 | Tip               | Zorunluluk | Açıklama                                                                                                |
-|:-------------------------:|:-----------------:|:--------:|:---------------------------------------------------------------------------------------------------------:|
-| args.\<month\>            | String <..M>      | hayır    | Crontime ifadesi için ay. 0 ile 11 arasında değerler alır. <sayı>M değerini alır.                         |
-| args.\<week\>             | String <..W>      | hayır    | Crontime ifadesi için hafta. 0, 1, 2 ve -1 değerlerini alır. <sayı>W değerini alır.                       |
-| args.\<weekDays\>         | String <..WD>     | hayır    | Crontime ifadesi için hafta içi günler. 0 ile 6 arasında değerler alır. <sayı>WD değerini alır.           |
-| args.\<time\>             | String <dd\:mm>   | hayır    | Crontime ifadesi için zaman(gg:dd)                                                                        |
-| args.\<tick\>             | Number            | hayır    | Tarihten çıkarılacak gün sayısı. Ay ve hafta parametreleri olmak zorundadır                               |
-| args.\<firstDayOfWeek\>   | String            | hayır    | Haftanın ilk günü. 0 ile 6 arasında değerler alır. <sayı>FD değerini alır. Varsayılan değer pazartesidir  |
+|        Parameter        |       Tip       | Zorunluluk |                                                 Açıklama                                                 |
+| :---------------------: | :-------------: | :--------: | :------------------------------------------------------------------------------------------------------: |
+|     args.\<month\>      |  String <..M>   |   hayır    |            Crontime ifadesi için ay. 0 ile 11 arasında değerler alır. <sayı>M değerini alır.             |
+|      args.\<week\>      |  String <..W>   |   hayır    |           Crontime ifadesi için hafta. 0, 1, 2 ve -1 değerlerini alır. <sayı>W değerini alır.            |
+|    args.\<weekDays\>    |  String <..WD>  |   hayır    |     Crontime ifadesi için hafta içi günler. 0 ile 6 arasında değerler alır. <sayı>WD değerini alır.      |
+|      args.\<time\>      | String <dd\:mm> |   hayır    |                                    Crontime ifadesi için zaman(gg:dd)                                    |
+|      args.\<tick\>      |     Number      |   hayır    |               Tarihten çıkarılacak gün sayısı. Ay ve hafta parametreleri olmak zorundadır                |
+| args.\<firstDayOfWeek\> |     String      |   hayır    | Haftanın ilk günü. 0 ile 6 arasında değerler alır. <sayı>FD değerini alır. Varsayılan değer pazartesidir |
 
 #### Çıktı
 
-| Tip              | Açıklama           |
-|:----------------:|:------------------:|
-| String           | Crontime ifadesi   |
+|  Tip   |     Açıklama     |
+| :----: | :--------------: |
+| String | Crontime ifadesi |
 
 #### Örnek
 
@@ -372,158 +319,189 @@ const cronti = require("cronti")
 // ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
 cronti("onTime", "4M", "2W")
 /* - VEYA - */
-cronti(3, "4M", "2W")
+cronti(2, "4M", "2W")
 // => "30 12 15-21 5 *"
 
 // ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
 cronti("onTime", "4M", "2W", "3WD")
 /* - VEYA - */
-cronti(3, "4M", "2W", "3WD")
+cronti(2, "4M", "2W", "3WD")
 // => "30 12 18 5 *"
 
 // ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
 cronti("onTime", "0W")
 /* - VEYA - */
-cronti(3, "0W")
+cronti(2, "0W")
 // => "30 12 1-7 * *"
 
 // ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
 cronti("onTime", "2M")
 /* - VEYA - */
-cronti(3, "2M")
+cronti(2, "2M")
 // => "30 12 * 3 *"
 
 // ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
 cronti("onTime", "6WD")
 /* - VEYA - */
-cronti(3, "6WD")
+cronti(2, "6WD")
 // => "30 12 * * 6"
 
 // ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
 cronti("onTime", "3M", "1WD")
 /* - VEYA - */
-cronti(3, "3M", "1WD")
+cronti(2, "3M", "1WD")
 // => "30 12 * 4 1"
 
 // ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
 cronti("onTime")
 /* - VEYA - */
-cronti(3)
+cronti(2)
 // => "30 12 * * *"
 
 // ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
 cronti("onTime", "4M", "2W", 1)
 /* - VEYA - */
-cronti(3, "4M", "2W", 1)
+cronti(2, "4M", "2W", 1)
 // => "30 12 14-21 5 *"
 
 // ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
 cronti("onTime", "2M", "09:45")
 /* - VEYA - */
-cronti(3, "2M", "09:45")
+cronti(2, "2M", "09:45")
 // => "45 09 * 3 *"
 
 // ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
 cronti("onTime", "0FD", "4M", "2W")
 /* - OR - */
-cronti(3, "0FD", "4M", "2W")
+cronti(2, "0FD", "4M", "2W")
 // => "30 12 14-20 5-5 *"
 
 // ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
 cronti("onTime", "0FD", "4M", "2W", "3WD")
 /* - OR - */
-cronti(3, "0FD", "4M", "2W", "3WD")
+cronti(2, "0FD", "4M", "2W", "3WD")
 // => "30 12 17 5 *"
 
 // ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
 cronti("onTime", "0FD", "0W")
 /* - OR - */
-cronti(3, "0FD", "0W")
+cronti(2, "0FD", "0W")
 // => "30 12 1-7 * *"
 
 // ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
 cronti("onTime", "0FD", "2M")
 /* - OR - */
-cronti(3, "0FD", "2M")
+cronti(2, "0FD", "2M")
 // => "30 12 * 3 *"
 
 // ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
 cronti("onTime", "0FD", "6WD")
 /* - OR - */
-cronti(3, "0FD", "6WD")
+cronti(2, "0FD", "6WD")
 // => "30 12 * * 6"
 
 // ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
 cronti("onTime", "0FD", "3M", "1WD")
 /* - OR - */
-cronti(3, "0FD", "3M", "1WD")
+cronti(2, "0FD", "3M", "1WD")
 // => "30 12 * 4 1"
 
 // ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
 cronti("onTime", "0FD")
 /* - OR - */
-cronti(3, "0FD")
+cronti(2, "0FD")
 // => "30 12 * * *"
 
 // ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
 cronti("onTime", "0FD", "4M", "2W", 1)
 /* - OR - */
-cronti(3, "0FD", "4M", "2W", 1)
+cronti(2, "0FD", "4M", "2W", 1)
 // => "30 12 13-20 5-5 *"
 
 // ! Crontime ifadesi oluşturuldukları zamana göre değişir. Test edilme zamanı 27.05.2022'dir.
 cronti("onTime", "0FD", "2M", "09:45")
 /* - OR - */
-cronti(3, "0FD", "2M", "09:45")
+cronti(2, "0FD", "2M", "09:45")
 // => "45 09 * 3 *"
 ```
 
-## onWeek
+## onCrontime
 
-Girilen tarihin haftasında, her gün tetiklenecek olan crontime ifadesi oluşturur.
-tick değerine göre girilen tarihten önce tetiklenecek olan crontime ifadesi döndürülür.
+Geçerli crontime ifadesi girilirse crontime ifadesi döner. Geçersiz giriş olursa undefined döner.
 
-Parametre olarak geçerli bir tarih değeri gönderilmelidir. Tik değeri için herhangi bir sayısal değer kullanılabilir.
+Parametrelerde herhangi bir crontime ifadesi kullanılabilir.
 
 #### Girdi
 
-| Parametre                 | Tip                  | Zorunluluk | Açıklama                                                                                                |
-|:-------------------------:|:--------------------:|:--------:|:---------------------------------------------------------------------------------------------------------:|
-| args.\<date\>             | Date                 | evet     | Crontime ifadesi için haftanın tarihi                                                                     |
-| args.\<tick\>             | Number               | hayır    | Tarihten çıkarılacak gün sayıs                                                                            |
-| args.\<firstDayOfWeek\>   | String               | hayır    | Haftanın ilk günü. 0 ile 6 arasında değerler alır. <sayı>FD değerini alır. Varsayılan değer pazartesidir  |
+|     Parametre     |  Tip   | Zorunluluk |     Açıklama     |
+| :---------------: | :----: | :--------: | :--------------: |
+| args.\<crontime\> | String |    evet    | Crontime ifadesi |
 
 #### Çıktı
 
-| Tip              | Açıklama           |
-|:----------------:|:------------------:|
-| String           | Crontime ifadesi   |
+|  Tip   |     Açıklama     |
+| :----: | :--------------: |
+| String | Crontime ifadesi |
 
 #### Örnek
 
 ```js
 const cronti = require("cronti")
 
-cronti("onWeek", "2022-05-26T09:30:00.000Z")
+cronti("onCrontime", "0 2 * * *")
 /* - VEYA - */
-cronti(1, "2022-05-26T09:30:00.000Z")
-// => "30 12 22-28 5-5 *"
-
-cronti("onWeek", "2022-05-26T09:30:00.000Z", 2)
-/* - VEYA - */
-cronti(1, "2022-05-26T09:30:00.000Z", 2)
-// => "30 12 20-28 5-5 *"
-
-cronti("onWeek", "2022-05-26T09:30:00.000Z", "0FD")
-/* - VEYA - */
-cronti(1, "2022-05-26T09:30:00.000Z", "0FD")
-// => "30 12 21-27 5-5 *"
-
-cronti("onWeek", "2022-05-26T09:30:00.000Z", 2, "0FD")
-/* - VEYA - */
-cronti(1, "2022-05-26T09:30:00.000Z", 2, "0FD")
-// => "30 12 19-27 5-5 *"
+cronti(3, "0 2 * * *")
+// => "0 2 * * *"
 ```
+
+## onDate
+
+Girilen tarih değerinin crontime ifadesini döndürür.
+Her ay veya sadece tarihin ayı ve her yıl tekrarlanacak crontime ifadesi döndürülür.
+Tick değerine göre girilen tarihten önce tetiklenecek olan crontime ifadesi döndürülür.
+
+Parametre olarak geçerli bir tarih değeri gönderilmelidir.
+
+#### Girdi
+
+|       Parametre        |   Tip   | Zorunluluk |                                  Açıklama                                   |
+| :--------------------: | :-----: | :--------: | :-------------------------------------------------------------------------: |
+|     args.\<date\>      |  Date   |    evet    |                   Crontime ifadesi için kullanılan tarih                    |
+|     args.\<tick\>      | Number  |   hayır    | Tarihten çıkarılacak gün sayısı. Ay ve hafta parametreleri olmak zorundadır |
+| args.\<isMonthOfDate\> | Boolean |   hayır    |                        Yalnızca tarihin ayında yürüt                        |
+
+#### Çıktı
+
+|  Tip   |     Açıklama     |
+| :----: | :--------------: |
+| String | Crontime ifadesi |
+
+#### Örnek
+
+```js
+const cronti = require("cronti")
+
+cronti("onDate", "2022-05-26T09:30:00.000Z")
+/* - VEYA - */
+cronti(4, "2022-05-26T09:30:00.000Z")
+// => "30 12 26 * *"
+
+cronti("onDate", "2022-05-26T09:30:00.000Z", 2)
+/* - VEYA - */
+cronti(4, "2022-05-26T09:30:00.000Z", 2)
+// => "30 12 24 * *"
+
+cronti("onDate", "2022-05-26T09:30:00.000Z", true)
+/* - VEYA - */
+cronti(4, "2022-05-26T09:30:00.000Z", true)
+// => "30 12 26 5 *"
+
+cronti("onDate", "2022-05-26T09:30:00.000Z", 2, true)
+/* - VEYA - */
+cronti(4, "2022-05-26T09:30:00.000Z", 2, true)
+// => "30 12 24 5 *"
+```
+
 
 # Yazarlar
 
@@ -533,4 +511,4 @@ Bakımını Yapanlar:
 
 # Telif Hakkı ve Lisans
 
-Telif hakkı Levent Sencer Şahin ve diğer katkıda bulunanlar, [GPL-3.0](LICENSE) kapsamında.
+Telif hakkı Levent Sencer Şahin ve diğer katkıda bulunanlar, [Apache-2.0](LICENSE) kapsamında.
