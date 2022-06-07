@@ -46,13 +46,13 @@
 module.exports = function(...args) {
     let date, tick, isMonthOfDate
     for(let arg of args) {
-        if(!date && isNaN(date)) date = new Date(arg);
+        if(!date || isNaN(date)) date = new Date(arg);
         if(!tick && typeof arg === "number") tick = arg;
         if(!isMonthOfDate && typeof arg === "boolean") isMonthOfDate = arg;
         if(date && tick && isMonthOfDate) break;
     }
 
-    if(!date && isNaN(date)) return ""
+    if(!date || isNaN(date)) return ""
 
     date.setDate(date.getDate() - Number(tick || 0))
 
