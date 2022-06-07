@@ -34,13 +34,13 @@
 module.exports = function(...args) {
     let startDate, endDate, step
     for(let arg of args) {
-        if(startDate && !isNaN(startDate) && !endDate && isNaN(endDate)) endDate = new Date(arg);
-        if(!startDate && isNaN(startDate)) startDate = new Date(arg);
+        if((startDate && !isNaN(startDate)) && (!endDate || isNaN(endDate))) endDate = new Date(arg);
+        if(!startDate || isNaN(startDate)) startDate = new Date(arg);
         if(!step && typeof arg === "string" && /^[0-9]{1,3}(d|h|m)$/.test(arg) && !isNaN(+arg.replace(/d|h|m/g, ""))) step = arg;
         if(startDate && endDate && step) break;
     }
 
-    if((!startDate && isNaN(startDate)) || (!endDate && isNaN(endDate))) return ""
+    if((!startDate || isNaN(startDate)) || (!endDate || isNaN(endDate))) return ""
 
     if(startDate > endDate) [startDate, endDate] = [endDate, startDate]
 

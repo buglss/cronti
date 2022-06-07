@@ -18,11 +18,11 @@
 module.exports = function(...args) {
     let date
     for(let arg of args) {
-        if(!date && isNaN(date)) date = new Date(arg);
+        if(!date || isNaN(date)) date = new Date(arg);
         if(date) break;
     }
 
-    if(!date && isNaN(date)) return ""
+    if(!date || isNaN(date)) return ""
 
     let days = date.getDate()
     let hours = date.getHours()
