@@ -124,7 +124,7 @@ module.exports = function(...args) {
     let month, week, weekDays, time, tick, firstDayOfWeek
     for(let arg of args) {
         if(!month && typeof arg === "string" && /^\dM$/.test(arg) && isNaN(month)) (month = +(arg.replace(/M/g, "")), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].includes(month) ? month : false);
-        if(!week && typeof arg === "string" && /^\dW$/.test(arg) && isNaN(week)) (week = +(arg.replace(/W/g, "")), [0, 1, 2, -1].includes(week) ? week : false);
+        if(!week && typeof arg === "string" && /^-?\dW$/.test(arg) && isNaN(week)) (week = +(arg.replace(/W/g, "")), [0, 1, 2, -1].includes(week) ? week : false);
         if(!weekDays && typeof arg === "string" && /^\dWD$/.test(arg) && isNaN(weekDays)) (weekDays = +(arg.replace(/WD/g, "")), [0, 1, 2, 3, 4, 5, 6].includes(weekDays) ? weekDays : false);
         if(!time && typeof arg === "string" && /^(([0-1][0-9])|(2[0-3])):(([0-5][0-9]))$/.test(arg)) time = arg;
         if(!tick && typeof arg === "number") tick = arg;
