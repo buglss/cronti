@@ -136,7 +136,7 @@ module.exports = function(...args) {
     tick = tick || 0
 
     let now = new Date()
-    let thisMonth = now.getMonth() + 1
+    let thisMonth = now.getMonth()
     let thisYear = now.getFullYear()
     let [hours, minutes] = time.split(":")
 
@@ -160,8 +160,8 @@ module.exports = function(...args) {
             let mins = date.getMinutes()
             let hours = date.getHours()
             let days = date.getDate()
-            month = date.getMonth() + 1
-            return `${mins} ${hours} ${days} ${month} *`
+            month = date.getMonth()
+            return `${mins} ${hours} ${days} ${month + 1} *`
         } else {
             week = weekOfMonth({ month, week, year: thisYear, firstDayOfWeek })
             let firstDate = week[0]
