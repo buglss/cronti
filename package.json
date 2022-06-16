@@ -1,6 +1,6 @@
 {
 	"name": "cronti",
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"description": "It translates humanly expressible recipes on the calendar into crontime expression. Produces a valid crontime expression. In summary: Creates a crontime that will run at regular intervals between two dates; enter valid crontime expression get crontime expression; generate crontime of the specific date; generate crontime of the specific date; create crontime with various combinations of month, week, weekdays, hours, minutes and tick and generates the cron time for the week the date is in.",
 	"main": "main.js",
 	"scripts": {
