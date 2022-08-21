@@ -24,4 +24,8 @@ describe("onCrontime", function() {
         let crontime = "0 2 * * *"
         assert.strictEqual(onCrontime(crontime), crontime)
     })
+    it(`onCrontime("0-30/5 20 * * *") --> "0-30/5 20 * * *" --> The used value is returned when a valid crontime expression is use.`, function() {
+        let crontime = "0-30/5 20 * * *"
+        assert.strictEqual(onCrontime(crontime), crontime)
+    })
 })
