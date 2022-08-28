@@ -25,7 +25,7 @@ function random(min, max, options = { toString: true }) {
 
 describe("isValidCronExpression", function() {
     const chars = [",", "-", "*", "/"]
-    const dataset = ["*/1 22 16-16 6-6 *"].concat([...new Array(5)].map((d, i) => {
+    const dataset = ["*/1 22 16-16 6-6 *", "0-30/55 20 * * *"].concat([...new Array(5)].map((d, i) => {
         let char = chars[i]
         let mins = "", hours = "", days = "", months = "", weekdays = ""
         switch(true) {
