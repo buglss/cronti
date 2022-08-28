@@ -31,7 +31,7 @@ const methodIndexLookup = { "onWeek": 0, "onIntervalTime": 1, "onTime": 2, "onCr
  *  generate crontime of the specific date;
  *  create crontime with various combinations of month, week, weekdays, hours, minutes and tick and generates the cron time for the week the date is in.
  * 
- * @param {Number|String} method Metod index or name. onWeek, onIntervalTime, onTime, onCrontime, onDate
+ * @param {Number|String} method Metod index or name. onWeek(0), onIntervalTime(1), onTime(2), onCrontime(3), onDate(4), HELPERS(-1)
  * @param {Array} args Arguments to metods
  * 
  * @returns {String} Crontime
@@ -41,6 +41,14 @@ const methodIndexLookup = { "onWeek": 0, "onIntervalTime": 1, "onTime": 2, "onCr
  * @license Apache-2.0
  */
 module.exports = function(method, ...args) {
+    if(method === "HELPERS" || method === -1) {
+        let helpers = {}
+        require("fs").readdirSync("./lib/").forEach(file => {
+            file = file.split(".").slice(0, -1).join(".")
+            helpers[file.replace(/-\w/g, x => x[1].toUpperCase())] = require("./lib/" + file)
+        })
+        return helpers
+    }
     const methodIndex = typeof method === "number" ? method : methodIndexLookup[method]
     return methods[methodIndex](...args)
 }
