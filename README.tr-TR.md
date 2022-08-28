@@ -147,31 +147,38 @@ cronti(0, "2022-05-26T09:30:00.000Z", "0FD")
 cronti(0, new Date("2022-05-26 12:30"), "0FD")
 /* çıktısı "30 12 21-27 5-5 *" */
 /* ************************************************************************ */
+
+/* cronti paketindeki helper fonksiyonlarını döner. */
+cronti("HELPERS")
+/* - OR - */
+cronti(-1)
+/* çıktısı {...} */
+/* ************************************************************************ */
 ```
 
 # Dokümantasyon
 
 - [Dokümantasyon](#dokümantasyon)
   - [onWeek](#onweek)
-      - [Girdi](#girdi)
-      - [Çıktı](#çıktı)
-      - [Örnek](#örnek)
+    - [Girdi](#girdi)
+    - [Çıktı](#çıktı)
+    - [Örnek](#örnek)
   - [onIntervalTime](#onintervaltime)
-      - [Girdi](#girdi-1)
-      - [Çıktı](#çıktı-1)
-      - [Örnek](#örnek-1)
+    - [Girdi](#girdi-1)
+    - [Çıktı](#çıktı-1)
+    - [Örnek](#örnek-1)
   - [onTime](#ontime)
-      - [Girdi](#girdi-2)
-      - [Çıktı](#çıktı-2)
-      - [Örnek](#örnek-2)
+    - [Girdi](#girdi-2)
+    - [Çıktı](#çıktı-2)
+    - [Örnek](#örnek-2)
   - [onCrontime](#oncrontime)
-      - [Girdi](#girdi-3)
-      - [Çıktı](#çıktı-3)
-      - [Örnek](#örnek-3)
+    - [Girdi](#girdi-3)
+    - [Çıktı](#çıktı-3)
+    - [Örnek](#örnek-3)
   - [onDate](#ondate)
-      - [Girdi](#girdi-4)
-      - [Çıktı](#çıktı-4)
-      - [Örnek](#örnek-4)
+    - [Girdi](#girdi-4)
+    - [Çıktı](#çıktı-4)
+    - [Örnek](#örnek-4)
 
 ``cronti`` fonksiyonu, ilk parametrede metod adını veya dizin değerini alır. Daha sonra sınırsız parametre eklenebilir. Çağrılan metodun fonksiyonuna göre gönderilen parametreler kullanılır.
 
@@ -184,6 +191,7 @@ cronti(<methodName(string)|methodIndex(number)>, <...args>)
 |     onTime     |   2   |     onTime     | Ay, hafta, hafta içi, saat, dakika ve tick gibi çeşitli kombinasyonlarla crontime ifadesi oluşturur |
 |   onCrontime   |   3   |   onCrontime   |                    Geçerli crontime ifadesi girildiğinde crontime ifadesi döner                     |
 |     onDate     |   4   |     onDate     |                           Belirli bir tarihin crontime ifadesini oluştur                            |
+|     HELPERS    |   -1  |     HELPERS    |                           cronti paketindeki helper fonksiyonlarını döner                           |
 
 ## onWeek
 
@@ -277,7 +285,6 @@ cronti("onIntervalTime", "2022-04-01T09:30:00.000Z", "2022-04-02T09:30:00.000Z",
 cronti(1, "2022-04-01T09:30:00.000Z", "2022-04-02T09:30:00.000Z", "30m")
 // => "*/30 12 1-2 4-4 *"
 ```
-
 
 ## onTime
 
@@ -501,7 +508,6 @@ cronti("onDate", "2022-05-26T09:30:00.000Z", 2, true)
 cronti(4, "2022-05-26T09:30:00.000Z", 2, true)
 // => "30 12 24 5 *"
 ```
-
 
 # Yazarlar
 
