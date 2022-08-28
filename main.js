@@ -43,7 +43,7 @@ const methodIndexLookup = { "onWeek": 0, "onIntervalTime": 1, "onTime": 2, "onCr
 module.exports = function(method, ...args) {
     if(method === "HELPERS" || method === -1) {
         let helpers = {}
-        require("fs").readdirSync("./lib/").forEach(file => {
+        require("fs").readdirSync(__dirname + "/lib/").forEach(file => {
             file = file.split(".").slice(0, -1).join(".")
             helpers[file.replace(/-\w/g, x => x[1].toUpperCase())] = require("./lib/" + file)
         })
