@@ -58,12 +58,14 @@ cronti("onIntervalTime", new Date("2022-04-25 12:30"), new Date("2022-05-15 12:3
 cronti(1, "2022-04-25T09:30:00.000Z", "2022-05-15T09:30:00.000Z")
 /* - OR - */
 cronti(1, new Date("2022-04-25 12:30"), new Date("2022-05-15 12:30"))
-/* returns "30 12 25-15 4-5 *" */
+/* return "30 12 25-15 4-5 *" */
 /* ************************************************************************ */
+
+/* Enter valid crontime expression get crontime expression. */
 cronti("onCrontime", "0 2 * * *")
 /* - OR - */
 cronti(3, "0 2 * * *")
-/* returns "0 2 * * *" */
+/* return "0 2 * * *" */
 /* ************************************************************************ */
 
 /* Generate crontime expression of the spesific date. */
@@ -74,7 +76,7 @@ cronti("onDate", new Date("2022-05-26 12:30"))
 cronti(4, "2022-05-26T09:30:00.000Z")
 /* - OR - */
 cronti(4, new Date("2022-05-26 12:30"))
-/* returns "30 12 26 * *" */
+/* return "30 12 26 * *" */
 /* ---------------------------------------------------- */
 cronti("onDate", "2022-05-26T09:30:00.000Z", true)
 /* - OR - */
@@ -83,7 +85,7 @@ cronti("onDate", new Date("2022-05-26 12:30"), true)
 cronti(4, "2022-05-26T09:30:00.000Z", true)
 /* - OR - */
 cronti(4, new Date("2022-05-26 12:30"), true)
-/* returns "30 12 26 5 *" */
+/* return "30 12 26 5 *" */
 /* ************************************************************************ */
 
 /* Create crontime with various combinations of month, week, weekdays, time and tick parameters.  
@@ -93,33 +95,33 @@ cronti(4, new Date("2022-05-26 12:30"), true)
 cronti("onTime", "4M", "2W")
 /* - OR - */
 cronti(2, "4M", "2W")
-/* returns "30 12 15-21 5 *" */
+/* return "30 12 15-21 5 *" */
 /* ---------------------------------------------------- */
 cronti("onTime", "4M", "2W", "3WD")
 /* - OR - */
 cronti(2, "4M", "2W", "3WD")
-/* returns "30 12 18 5 *" */
+/* return "30 12 18 5 *" */
 /* ---------------------------------------------------- */
 cronti("onTime", "3M", "1WD")
 /* - OR - */
 cronti(2, "3M", "1WD")
-/* returns "30 12 * 4 1" */
+/* return "30 12 * 4 1" */
 /* ---------------------------------------------------- */
 /* - First day of week is Sunday - */
 cronti("onTime", "0FD", "4M", "2W")
 /* - OR - */
 cronti(2, "0FD", "4M", "2W")
-/* returns "30 12 14-20 5-5 *" */
+/* return "30 12 14-20 5-5 *" */
 /* ---------------------------------------------------- */
 cronti("onTime", "0FD", "4M", "2W", "3WD")
 /* - OR - */
 cronti(2, "0FD", "4M", "2W", "3WD")
-/* returns "30 12 17 5 *" */
+/* return "30 12 17 5 *" */
 /* ---------------------------------------------------- */
 cronti("onTime", "0FD", "3M", "1WD")
 /* - OR - */
 cronti(2, "0FD", "3M", "1WD")
-/* returns "30 12 * 4 1" */
+/* return "30 12 * 4 1" */
 /* ************************************************************************ */
 
 /* Generates the cron time for the week the date is in.
@@ -133,7 +135,7 @@ cronti("onWeek", new Date("2022-05-26 12:30"))
 cronti(0, "2022-05-26T09:30:00.000Z")
 /* - OR - */
 cronti(0, new Date("2022-05-26 12:30"))
-/* returns "30 12 22-28 5-5 *" */
+/* return "30 12 22-28 5-5 *" */
 /* ---------------------------------------------------- */
 /* - First day of week is Sunday - */
 cronti("onWeek", "2022-05-26T09:30:00.000Z", "0FD")
@@ -143,7 +145,14 @@ cronti("onWeek", new Date("2022-05-26 12:30"), "0FD")
 cronti(0, "2022-05-26T09:30:00.000Z", "0FD")
 /* - OR - */
 cronti(0, new Date("2022-05-26 12:30"), "0FD")
-/* returns "30 12 21-27 5-5 *" */
+/* return "30 12 21-27 5-5 *" */
+/* ************************************************************************ */
+
+/* Get helper functions in cronti package. */
+cronti("HELPERS")
+/* - OR - */
+cronti(-1)
+/* return {...} */
 /* ************************************************************************ */
 ```
 
@@ -182,6 +191,7 @@ cronti(<methodName(string)|methodIndex(number)>, <...args>)
 |     onTime     |   2   |     onTime     | Create crontime with various combinations of month, week, weekdays, hours, minutes and tick |
 |   onCrontime   |   3   |   onCrontime   |                   Enter valid crontime expression get crontime expression                   |
 |     onDate     |   4   |     onDate     |                           Generate crontime of the spesific date                            |
+|     HELPERS    |   -1  |     HELPERS    |                           Get helper functions in cronti package                            |
 
 ## onWeek
 
