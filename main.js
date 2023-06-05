@@ -42,12 +42,12 @@ const methodIndexLookup = { "onWeek": 0, "onIntervalTime": 1, "onTime": 2, "onCr
  */
 module.exports = function(method, ...args) {
     if(method === "HELPERS" || method === -1) {
-        let helpers = {}
-        require("fs").readdirSync(__dirname + "/lib/").forEach(file => {
-            file = file.split(".").slice(0, -1).join(".")
-            helpers[file.replace(/-\w/g, x => x[1].toUpperCase())] = require("./lib/" + file)
+        let helpers = ["date-of-month", "day-of-week", "diff-seconds-upto-today", "is-valid-cron-expression", "week-of-date", "week-of-month", "weeks-of-month"]
+        let helperDictionary = {}
+        helpers.forEach(helper => {
+            helperDictionary[helper.replace(/-\w/g, x => x[1].toUpperCase())] = require("./lib/" + helper)
         })
-        return helpers
+        return helperDictionary
     }
     const methodIndex = typeof method === "number" ? method : methodIndexLookup[method]
     return methods[methodIndex](...args)
